@@ -1,3 +1,6 @@
+/* Disable Download Image */
+document.addEventListener("contextmenu",function(e){"IMG"===e.target.nodeName&&e.preventDefault()},!1);
+
 /* Codebox */
 0<document.querySelectorAll('div.pre.fd').length&&(() => {
 let preD = document.querySelectorAll('div.pre.fd');
