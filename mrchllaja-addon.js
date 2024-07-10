@@ -69,7 +69,7 @@ const wcSliderRandom = {
   feeds: 'https://mrchllaja.blogspot.com',
   noImage: 'data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=',
   thumbnailSize: '1600',
-  amount: '4',
+  amount: '8',
   duration: '2000',
   auto: 'true',
   button: 'true',
