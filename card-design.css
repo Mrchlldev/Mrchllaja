@@ -14,11 +14,11 @@
   flex-direction: column;
 }
 
-.card .body .title {
+.card .body .card-title {
   font-size: 18px;
 }
 
-.card .body .text {
+.card .body .card-text {
   font-size: 28px;
 }
 
