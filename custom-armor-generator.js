@@ -95,7 +95,7 @@ genBtn.onclick = async () => {
   }
 
   /* ===== plugin.yml ===== */
-  outputZip.file(`${root}plugin.yml`,
+  outputZip.file(`${pluginName}/plugin.yml`,
 `name: ${pluginName}
 main: Mrchlldev\\${pluginName}\\${pluginName}
 version: 1.0.0
