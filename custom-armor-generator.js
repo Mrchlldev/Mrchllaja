@@ -142,7 +142,7 @@ depend: [Customies]
     const displayName = className.replace(/([A-Z])/g, " $1").trim();
 
     outputZip.file(
-`${root}src/Mrchlldev/${pluginName}/item/${type}/${className}.php`,
+`${root}src/Mrchlldev/${pluginName}/item/${type}/${baseClass}.php`,
 `<?php
 
 declare(strict_types=1);
