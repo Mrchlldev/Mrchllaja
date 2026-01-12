@@ -1,16 +1,6 @@
 /* ============================= */
 /* BASE                          */
 /* ============================= */
-* {
-  box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
-body {
-  margin: 0;
-  padding: 20px;
-  color: #212529;
-}
 
 .form-container {
   max-width: 520px;
