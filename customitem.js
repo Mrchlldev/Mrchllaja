@@ -154,7 +154,7 @@ depend: [Customies]
     const typeInv = armorInvTypeFromSetup(setup);
 
     const baseClass = classNameFromKey(textureKey);
-    const className = baseClass + type[0].toUpperCase() + type.slice(1);
+    const className = baseClass;
     const displayName = className.replace(/([A-Z])/g, " $1").trim();
 
     ensureFolder(outputZip, `${root}src/Mrchlldev/${pluginName}/item/${type}`);
@@ -172,10 +172,9 @@ use customiesdevs\customies\\item\\ItemComponentsTrait;
 use pocketmine\\item\\Armor;
 use pocketmine\\item\\ArmorTypeInfo;
 use pocketmine\\inventory\\ArmorInventory;
-use pocketmine\\item\\CreativeInventoryInfo;
 use pocketmine\\item\\ItemIdentifier;
 
-class ${baseClass} extends Armor implements ItemComponents {
+class ${className} extends Armor implements ItemComponents {
 
     use ItemComponentsTrait;
 
@@ -201,11 +200,11 @@ class ${baseClass} extends Armor implements ItemComponents {
 
   /* ===== MAIN CLASS ===== */
   const useItems = registeredItems.map(i =>
-    `use Mrchlldev\\${pluginName}\\item\\${i.type}\\${i.baseClass};`
+    `use Mrchlldev\\${pluginName}\\item\\${i.type}\\${i.className};`
   ).join("\n");
 
   const itemsConst = registeredItems.map(i =>
-    `        ${i.baseClass}::class => ["${i.identifier}", "${i.displayName}"],`
+    `        ${i.className}::class => ["${i.identifier}", "${i.displayName}"],`
   ).join("\n");
 
   outputZip.file(
