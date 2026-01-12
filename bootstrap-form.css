@@ -21,7 +21,7 @@ body {
 /* CARD                          */
 /* ============================= */
 .form-card {
-  background: #fff;
+  background: var(--contentB);
   box-shadow: 0 8px 24px rgba(0,0,0,.06);
 }
 
