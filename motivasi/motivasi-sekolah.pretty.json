@@ -2,7 +2,8 @@
   "name": "Motivasi Sekolah",
   "description": "Database JSON motivasi tentang sekolah.",
   "total": 1500,
-  "created_at": "2026-06-07T05:19:19",
+  "author": "Mrchlldev",
+  "note:" "Please don't change the author for respect.",
   "data": [
     {
       "id": 1,
