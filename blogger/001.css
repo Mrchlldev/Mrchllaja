@@ -6,7 +6,6 @@
 .mrcl-001-container {
     width: 100%;
     min-height: 100vh;
-    background: var(--contentB);
 }
 
 
@@ -665,11 +664,11 @@
 
     padding: 15px;
 
-    background: #ffffff;
+    background: var(--contentB);
 
-    border: 1px solid #eeeeee;
+    border: 1px solid var(--contentL);
 
-    border-radius: 14px;
+    border-radius: 5px;
 }
 
 
