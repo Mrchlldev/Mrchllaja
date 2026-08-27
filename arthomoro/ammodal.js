@@ -1,11 +1,11 @@
 /* =========================================================
    ARTHOMORO MODAL
    Single Script Library
-   SweetAlert2-inspired
+   By: Mrchlldev
    Version: 1.0.0
 
    Usage:
-   <script src="arthomoro-modal.js"></script>
+   <script src="https://cdn.jsdelivr.net/gh/Mrchlldev/Mrchllaja@main/arthomoro/ammodal.js"></script>
 
    AMModal.fire({...})
    AMModal.success({...})
@@ -53,14 +53,12 @@
         --am-modal-primary:
             var(--linkC, #2563eb);
 
-        --am-modal-text:
-            var(--textC, #172033);
+        --am-modal-text:;
 
-        --am-modal-muted:
-            var(--textC, #64748b);
+        --am-modal-muted:;
 
         --am-modal-radius:
-            22px;
+            5px;
 
         --am-modal-shadow:
             0 24px 70px rgba(0,0,0,.18),
