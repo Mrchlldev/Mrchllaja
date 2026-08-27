@@ -1079,6 +1079,7 @@
 
             fields:
                 fields,
+            confirmButtonText: mode === "buy" ? "Beli" : "Tambahkan",
 
 
             onSubmit:
