@@ -1,6 +1,6 @@
 /*!
  * =========================================================
- * AMModal v2.7.0
+ * AMModal v2.8.0
  * Arthomoro Modal Library
  *
  * Single Library
