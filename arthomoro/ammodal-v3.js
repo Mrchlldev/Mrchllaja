@@ -20,7 +20,7 @@
  * - Async callbacks
  *
  * CDN:
- * https://cdn.jsdelivr.net/gh/Mrchlldev/Mrchllaja@main/arthomoro/ammodal-3.js
+ * https://cdn.jsdelivr.net/gh/Mrchlldev/Mrchllaja@main/arthomoro/ammodal-v3.js
  * =========================================================
  */
 
@@ -50,8 +50,7 @@
     --am-modal-primary:
         var(--linkC, #2563eb);
 
-    --am-modal-text:
-        var(--textC, #111827);
+    --am-modal-text:;
 
     --am-modal-muted:
         #64748b;
