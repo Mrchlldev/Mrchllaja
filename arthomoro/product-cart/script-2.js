@@ -1,5 +1,5 @@
 /* =========================================================
-   AM PRODUCT SYSTEM
+   AM PRODUCT SYSTEM V2
    Single Product Page + Cart
 ========================================================= */
 
@@ -35,7 +35,9 @@
 
             minimumFractionDigits: 0
 
-        }).format(Number(number) || 0);
+        }).format(
+            Number(number) || 0
+        );
 
     }
 
@@ -62,6 +64,71 @@
 
 
     /* =====================================================
+       GET PRODUCT
+       
+       V2:
+       Produk langsung berasal dari:
+       
+       const product = {...}
+       
+       Tidak membutuhkan:
+       [data-am-product]
+    ===================================================== */
+
+    function getCurrentProduct() {
+
+        if (
+            typeof window.product === "object" &&
+            window.product !== null
+        ) {
+
+            return window.product;
+
+        }
+
+        return null;
+
+    }
+
+
+    /* =====================================================
+       VALIDATE PRODUCT
+    ===================================================== */
+
+    function validateProduct(product) {
+
+        if (!product) {
+            return false;
+        }
+
+
+        if (
+            typeof product.name !== "string" ||
+            !product.name.trim()
+        ) {
+
+            return false;
+
+        }
+
+
+        if (
+            product.price === undefined ||
+            product.price === null ||
+            isNaN(Number(product.price))
+        ) {
+
+            return false;
+
+        }
+
+
+        return true;
+
+    }
+
+
+    /* =====================================================
        GET CART
     ===================================================== */
 
@@ -74,16 +141,20 @@
                     AMProductSystem.storageKey
                 );
 
+
             if (!data) {
                 return [];
             }
 
+
             const cart =
                 JSON.parse(data);
+
 
             return Array.isArray(cart)
                 ? cart
                 : [];
+
 
         } catch (error) {
 
@@ -91,6 +162,7 @@
                 "AM Cart:",
                 error
             );
+
 
             return [];
 
@@ -105,15 +177,42 @@
 
     function saveCart(cart) {
 
-        localStorage.setItem(
+        try {
 
-            AMProductSystem.storageKey,
+            localStorage.setItem(
 
-            JSON.stringify(cart)
+                AMProductSystem.storageKey,
 
-        );
+                JSON.stringify(cart)
 
-        updateCartCount();
+            );
+
+
+            updateCartCount();
+
+
+            document.dispatchEvent(
+
+                new CustomEvent(
+                    "amCartUpdated",
+                    {
+                        detail: {
+                            cart: cart
+                        }
+                    }
+                )
+
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                "AM Cart Save:",
+                error
+            );
+
+        }
 
     }
 
@@ -128,8 +227,15 @@
 
             function (total, item) {
 
-                return total +
-                    Number(item.quantity || 0);
+                return (
+
+                    total +
+
+                    Number(
+                        item.quantity || 0
+                    )
+
+                );
 
             },
 
@@ -147,30 +253,19 @@
                 "[data-am-cart-count]"
             );
 
+
         const count =
             getCartCount();
 
 
         elements.forEach(
+
             function (element) {
 
                 element.textContent =
                     count;
 
             }
-        );
-
-
-        document.dispatchEvent(
-
-            new CustomEvent(
-                "amCartUpdated",
-                {
-                    detail: {
-                        count: count
-                    }
-                }
-            )
 
         );
 
@@ -178,16 +273,10 @@
 
 
     /* =====================================================
-       FIND PRODUCT VARIANT EXTRA PRICE
+       NORMALIZE VARIANT
     ===================================================== */
 
-    function getVariantExtraPrice(
-        product,
-        variantData
-    ) {
-
-        let extra = 0;
-
+    function normalizeVariants(product) {
 
         if (
             !Array.isArray(
@@ -195,12 +284,117 @@
             )
         ) {
 
-            return 0;
+            return [];
 
         }
 
 
-        product.variant.forEach(
+        return product.variant.filter(
+
+            function (variant) {
+
+                return (
+
+                    variant &&
+
+                    variant.name &&
+
+                    Array.isArray(
+                        variant.options
+                    )
+
+                );
+
+            }
+
+        );
+
+    }
+
+
+    /* =====================================================
+       FIND VARIANT OPTION
+    ===================================================== */
+
+    function findVariantOption(
+
+        product,
+        variantName,
+        value
+
+    ) {
+
+        const variants =
+            normalizeVariants(
+                product
+            );
+
+
+        const variant =
+            variants.find(
+
+                function (item) {
+
+                    return (
+                        String(
+                            item.name
+                        ) === String(
+                            variantName
+                        )
+                    );
+
+                }
+
+            );
+
+
+        if (!variant) {
+            return null;
+        }
+
+
+        return variant.options.find(
+
+            function (option) {
+
+                return (
+
+                    String(
+                        option.value
+                    ) === String(
+                        value
+                    )
+
+                );
+
+            }
+
+        ) || null;
+
+    }
+
+
+    /* =====================================================
+       GET VARIANT EXTRA PRICE
+    ===================================================== */
+
+    function getVariantExtraPrice(
+
+        product,
+        variantData
+
+    ) {
+
+        let extra = 0;
+
+
+        const variants =
+            normalizeVariants(
+                product
+            );
+
+
+        variants.forEach(
 
             function (variant) {
 
@@ -210,15 +404,10 @@
                     ];
 
 
-                if (!selected) {
-                    return;
-                }
-
-
                 if (
-                    !Array.isArray(
-                        variant.options
-                    )
+                    selected === undefined ||
+                    selected === null ||
+                    selected === ""
                 ) {
 
                     return;
@@ -227,29 +416,43 @@
 
 
                 const option =
-                    variant.options.find(
+                    findVariantOption(
 
-                        function (option) {
+                        product,
 
-                            return String(
-                                option.value
-                            ) === String(
-                                selected
-                            );
+                        variant.name,
 
-                        }
+                        selected
 
                     );
 
 
+                if (!option) {
+                    return;
+                }
+
+
+                /*
+                 * Hanya angka yang dianggap
+                 * sebagai tambahan harga.
+                 *
+                 * Tidak ada price = 0
+                 */
+
                 if (
-                    option &&
-                    typeof option.price ===
-                    "number"
+                    option.price !== undefined &&
+                    option.price !== null &&
+                    !isNaN(
+                        Number(
+                            option.price
+                        )
+                    )
                 ) {
 
                     extra +=
-                        option.price;
+                        Number(
+                            option.price
+                        );
 
                 }
 
@@ -264,21 +467,28 @@
 
 
     /* =====================================================
-       PRODUCT PRICE
+       GET PRODUCT PRICE
     ===================================================== */
 
     function getProductPrice(
+
         product,
         variantData
+
     ) {
 
         return (
 
-            Number(product.price) +
+            Number(
+                product.price
+            ) +
 
             getVariantExtraPrice(
+
                 product,
+
                 variantData
+
             )
 
         );
@@ -291,9 +501,11 @@
     ===================================================== */
 
     function createCartId(
+
         product,
         variantData,
         note
+
     ) {
 
         const variants =
@@ -305,15 +517,23 @@
                 .sort()
 
                 .map(
+
                     function (key) {
 
                         return (
-                            key +
+
+                            String(key) +
+
                             "=" +
-                            variantData[key]
+
+                            String(
+                                variantData[key]
+                            )
+
                         );
 
                     }
+
                 )
 
                 .join("|");
@@ -321,7 +541,9 @@
 
         return (
 
-            product.name +
+            String(
+                product.name
+            ) +
 
             "::" +
 
@@ -329,7 +551,9 @@
 
             "::" +
 
-            String(note || "")
+            String(
+                note || ""
+            )
 
         );
 
@@ -345,32 +569,112 @@
         const fields = [];
 
 
-        if (
-            !Array.isArray(
-                product.variant
-            )
-        ) {
-
-            return fields;
-
-        }
+        const variants =
+            normalizeVariants(
+                product
+            );
 
 
-        product.variant.forEach(
+        variants.forEach(
 
             function (variant, index) {
 
-                if (
-                    !variant ||
-                    !variant.name ||
-                    !Array.isArray(
-                        variant.options
-                    )
-                ) {
+                const options =
+                    variant.options
+                        .filter(
 
-                    return;
+                            function (option) {
 
-                }
+                                return (
+
+                                    option &&
+
+                                    option.value !==
+                                        undefined &&
+
+                                    option.value !==
+                                        null
+
+                                );
+
+                            }
+
+                        )
+                        .map(
+
+                            function (option) {
+
+                                let label =
+                                    option.label !==
+                                    undefined
+
+                                        ? option.label
+
+                                        : option.value;
+
+
+                                /*
+                                 * Jika ada price,
+                                 * tampilkan tambahan harga.
+                                 */
+
+                                if (
+                                    option.price !==
+                                        undefined &&
+                                    option.price !==
+                                        null &&
+                                    !isNaN(
+                                        Number(
+                                            option.price
+                                        )
+                                    ) &&
+                                    Number(
+                                        option.price
+                                    ) !== 0
+                                ) {
+
+                                    const price =
+                                        Number(
+                                            option.price
+                                        );
+
+
+                                    if (price > 0) {
+
+                                        label +=
+                                            " (+" +
+                                            formatPrice(
+                                                price
+                                            ) +
+                                            ")";
+
+                                    } else {
+
+                                        label +=
+                                            " (" +
+                                            formatPrice(
+                                                price
+                                            ) +
+                                            ")";
+
+                                    }
+
+                                }
+
+
+                                return {
+
+                                    value:
+                                        option.value,
+
+                                    label:
+                                        label
+
+                                };
+
+                            }
+
+                        );
 
 
                 fields.push({
@@ -391,43 +695,7 @@
                     required: true,
 
                     options:
-                        variant.options.map(
-
-                            function (option) {
-
-                                let label =
-                                    option.label;
-
-
-                                if (
-                                    typeof option.price ===
-                                    "number" &&
-                                    option.price > 0
-                                ) {
-
-                                    label +=
-                                        " (+" +
-                                        formatPrice(
-                                            option.price
-                                        ) +
-                                        ")";
-
-                                }
-
-
-                                return {
-
-                                    value:
-                                        option.value,
-
-                                    label:
-                                        label
-
-                                };
-
-                            }
-
-                        )
+                        options
 
                 });
 
@@ -446,35 +714,43 @@
     ===================================================== */
 
     function readVariantData(
+
         product,
         data
+
     ) {
 
         const result = {};
 
 
-        if (
-            !Array.isArray(
-                product.variant
-            )
-        ) {
-
-            return result;
-
-        }
+        const variants =
+            normalizeVariants(
+                product
+            );
 
 
-        product.variant.forEach(
+        variants.forEach(
 
             function (variant, index) {
 
-                result[
-                    variant.name
-                ] =
+                const value =
                     data[
                         "am_variant_" +
                         index
                     ];
+
+
+                if (
+                    value !== undefined &&
+                    value !== null &&
+                    value !== ""
+                ) {
+
+                    result[
+                        variant.name
+                    ] = value;
+
+                }
 
             }
 
@@ -487,14 +763,105 @@
 
 
     /* =====================================================
+       BUILD STORED VARIANT DATA
+       
+       Menyimpan juga extra price supaya
+       cart.html tidak perlu punya config produk.
+    ===================================================== */
+
+    function buildStoredVariantData(
+
+        product,
+        variantData
+
+    ) {
+
+        const variants =
+            normalizeVariants(
+                product
+            );
+
+
+        return variants.map(
+
+            function (variant) {
+
+                const selected =
+                    variantData[
+                        variant.name
+                    ];
+
+
+                const option =
+                    findVariantOption(
+
+                        product,
+
+                        variant.name,
+
+                        selected
+
+                    );
+
+
+                return {
+
+                    name:
+                        variant.name,
+
+                    value:
+                        selected,
+
+                    label:
+                        option
+                            ? (
+                                option.label !==
+                                undefined
+
+                                    ? option.label
+
+                                    : option.value
+                            )
+                            : selected,
+
+                    price:
+                        option &&
+                        option.price !==
+                            undefined &&
+                        option.price !==
+                            null &&
+                        !isNaN(
+                            Number(
+                                option.price
+                            )
+                        )
+
+                            ? Number(
+                                option.price
+                            )
+
+                            : 0
+
+                };
+
+            }
+
+        );
+
+    }
+
+
+    /* =====================================================
        ADD PRODUCT TO CART
     ===================================================== */
 
     function addProductToCart(
+
         product,
         variantData,
         quantity,
         note
+
     ) {
 
         const cart =
@@ -503,47 +870,98 @@
 
         const id =
             createCartId(
+
                 product,
+
                 variantData,
+
                 note
+
+            );
+
+
+        const variantExtraPrice =
+            getVariantExtraPrice(
+
+                product,
+
+                variantData
+
+            );
+
+
+        const unitPrice =
+            Number(
+                product.price
+            ) +
+            variantExtraPrice;
+
+
+        const storedVariants =
+            buildStoredVariantData(
+
+                product,
+
+                variantData
+
             );
 
 
         const existing =
             cart.find(
+
                 function (item) {
 
-                    return item.id === id;
+                    return (
+                        item.id === id
+                    );
 
                 }
+
             );
 
 
         if (existing) {
 
-            existing.quantity +=
-                quantity;
+            existing.quantity =
+                Number(
+                    existing.quantity || 0
+                ) +
+                Number(quantity);
+
 
         } else {
 
             cart.push({
 
-                id: id,
+                id:
+                    id,
 
                 name:
                     product.name,
 
-                price:
-                    Number(product.price),
-
                 img:
-                    product.img,
+                    product.img || "",
+
+                basePrice:
+                    Number(
+                        product.price
+                    ),
+
+                variantExtraPrice:
+                    variantExtraPrice,
+
+                price:
+                    unitPrice,
 
                 variant:
                     variantData,
 
+                variantDetails:
+                    storedVariants,
+
                 quantity:
-                    quantity,
+                    Number(quantity),
 
                 note:
                     note || ""
@@ -555,6 +973,9 @@
 
         saveCart(cart);
 
+
+        return true;
+
     }
 
 
@@ -563,11 +984,17 @@
     ===================================================== */
 
     function openProductForm(
+
         product,
         mode
+
     ) {
 
-        if (!product) {
+        if (
+            !validateProduct(
+                product
+            )
+        ) {
 
             AMModal.toast({
 
@@ -589,6 +1016,10 @@
             );
 
 
+        /*
+         * JUMLAH
+         */
+
         fields.push({
 
             type: "number",
@@ -608,6 +1039,10 @@
 
         });
 
+
+        /*
+         * CATATAN
+         */
 
         fields.push({
 
@@ -633,8 +1068,12 @@
         AMModal.form({
 
             title:
+
                 mode === "buy"
-                    ? "Beli " + product.name
+
+                    ? "Beli " +
+                      product.name
+
                     : "Tambah ke Keranjang",
 
 
@@ -643,12 +1082,16 @@
 
 
             onSubmit:
+
                 function (data) {
 
                     const variantData =
                         readVariantData(
+
                             product,
+
                             data
+
                         );
 
 
@@ -658,8 +1101,11 @@
                             1,
 
                             parseInt(
+
                                 data.quantity,
+
                                 10
+
                             ) || 1
 
                         );
@@ -667,14 +1113,16 @@
 
                     const note =
                         String(
+
                             data.note || ""
+
                         ).trim();
 
 
                     /*
-                     * ======================================
-                     * TAMBAH KE KERANJANG
-                     * ======================================
+                     * ==================================
+                     * ADD TO CART
+                     * ==================================
                      */
 
                     if (
@@ -710,9 +1158,9 @@
 
 
                     /*
-                     * ======================================
-                     * BELI LANGSUNG
-                     * ======================================
+                     * ==================================
+                     * BUY DIRECT
+                     * ==================================
                      */
 
                     const price =
@@ -843,18 +1291,22 @@
         message +=
             "%0A*Harga:* " +
             encodeURIComponent(
+
                 formatPrice(
                     data.price
                 )
+
             );
 
 
         message +=
             "%0A*Total:* " +
             encodeURIComponent(
+
                 formatPrice(
                     data.total
                 )
+
             );
 
 
@@ -902,20 +1354,21 @@
 
             function (item, index) {
 
-                const variantExtra =
-                    getStoredVariantExtra(
+                const price =
+                    getStoredItemPrice(
                         item
                     );
 
 
-                const price =
-                    Number(item.price) +
-                    variantExtra;
+                const quantity =
+                    Number(
+                        item.quantity || 0
+                    );
 
 
                 const subtotal =
                     price *
-                    Number(item.quantity);
+                    quantity;
 
 
                 total +=
@@ -934,11 +1387,40 @@
 
                 message +=
                     "Jumlah: " +
-                    item.quantity +
+                    quantity +
                     "%0A";
 
 
+                /*
+                 * VARIANT
+                 */
+
                 if (
+                    Array.isArray(
+                        item.variantDetails
+                    ) &&
+                    item.variantDetails.length
+                ) {
+
+                    item.variantDetails.forEach(
+
+                        function (variant) {
+
+                            message +=
+                                encodeURIComponent(
+                                    variant.name
+                                ) +
+                                ": " +
+                                encodeURIComponent(
+                                    variant.label
+                                ) +
+                                "%0A";
+
+                        }
+
+                    );
+
+                } else if (
                     item.variant &&
                     Object.keys(
                         item.variant
@@ -968,6 +1450,10 @@
                 }
 
 
+                /*
+                 * CATATAN
+                 */
+
                 if (item.note) {
 
                     message +=
@@ -980,10 +1466,16 @@
                 }
 
 
+                /*
+                 * HARGA
+                 */
+
                 message +=
                     "Harga: " +
                     encodeURIComponent(
-                        formatPrice(price)
+                        formatPrice(
+                            price
+                        )
                     ) +
                     "%0A";
 
@@ -991,7 +1483,9 @@
                 message +=
                     "Subtotal: " +
                     encodeURIComponent(
-                        formatPrice(subtotal)
+                        formatPrice(
+                            subtotal
+                        )
                     ) +
                     "%0A%0A";
 
@@ -1003,7 +1497,9 @@
         message +=
             "*TOTAL: " +
             encodeURIComponent(
-                formatPrice(total)
+                formatPrice(
+                    total
+                )
             ) +
             "*";
 
@@ -1026,250 +1522,48 @@
 
 
     /* =====================================================
-       STORED VARIANT EXTRA
+       GET STORED ITEM PRICE
     ===================================================== */
 
-    function getStoredVariantExtra(
-        item
-    ) {
+    function getStoredItemPrice(item) {
 
         /*
-         * Produk diambil dari config halaman
-         * jika tersedia.
-         *
-         * Tetapi keranjang.html dapat memiliki
-         * registry produk tambahan.
+         * V2 menyimpan harga final item.
          */
 
-        const product =
-            findProductFromRegistry(
-                item
-            );
-
-
-        if (!product) {
-
-            /*
-             * Kalau data harga variant sudah
-             * disimpan di item, gunakan nilai
-             * tersebut.
-             */
+        if (
+            item.price !== undefined &&
+            !isNaN(
+                Number(
+                    item.price
+                )
+            )
+        ) {
 
             return Number(
-                item.variantExtraPrice || 0
+                item.price
             );
 
         }
 
 
-        return getVariantExtraPrice(
+        /*
+         * Fallback untuk cart lama.
+         */
 
-            product,
+        return (
 
-            item.variant || {}
+            Number(
+                item.basePrice ||
+                0
+            ) +
+
+            Number(
+                item.variantExtraPrice ||
+                0
+            )
 
         );
-
-    }
-
-
-    /* =====================================================
-       PRODUCT REGISTRY
-    ===================================================== */
-
-    function findProductFromRegistry(
-        item
-    ) {
-
-        if (
-            Array.isArray(
-                window.AMProducts
-            )
-        ) {
-
-            const found =
-                window.AMProducts.find(
-
-                    function (product) {
-
-                        return (
-                            product.name ===
-                            item.name
-                        );
-
-                    }
-
-                );
-
-
-            if (found) {
-                return found;
-            }
-
-        }
-
-
-        if (
-            window.product &&
-            window.product.name ===
-            item.name
-        ) {
-
-            return window.product;
-
-        }
-
-
-        return null;
-
-    }
-
-
-    /* =====================================================
-       WHATSAPP OPEN
-    ===================================================== */
-
-    function openWhatsApp(
-        message
-    ) {
-
-        const phone =
-            String(
-                AMProductSystem.whatsapp
-            )
-                .replace(
-                    /\D/g,
-                    ""
-                );
-
-
-        if (!phone) {
-
-            AMModal.toast({
-
-                icon: "error",
-
-                text:
-                    "Nomor WhatsApp belum dikonfigurasi."
-
-            });
-
-            return;
-
-        }
-
-
-        const url =
-            "https://wa.me/" +
-            phone +
-            "?text=" +
-            message;
-
-
-        window.open(
-            url,
-            "_blank",
-            "noopener,noreferrer"
-        );
-
-    }
-
-
-    /* =====================================================
-       RENDER SINGLE PRODUCT
-    ===================================================== */
-
-    function renderProduct() {
-
-        const container =
-            document.querySelector(
-                "[data-am-product]"
-            );
-
-
-        if (!container) {
-            return;
-        }
-
-
-        const product =
-            window.product;
-
-
-        if (!product) {
-
-            container.innerHTML = "";
-
-            return;
-
-        }
-
-
-        container.innerHTML = `
-
-            <div class="am-product-container">
-
-                <div class="am-product-image">
-
-                    <img
-                        src="${escapeHTML(product.img)}"
-                        alt="${escapeHTML(product.name)}"
-                    >
-
-                </div>
-
-
-                <div class="am-product-info">
-
-                    <h1 class="am-product-name">
-                        ${escapeHTML(product.name)}
-                    </h1>
-
-
-                    <div class="am-product-price">
-                        ${formatPrice(product.price)}
-                    </div>
-
-
-                    ${
-                        product.description
-                            ? `
-                                <div class="am-product-description">
-                                    ${escapeHTML(
-                                        product.description
-                                    )}
-                                </div>
-                            `
-                            : ""
-                    }
-
-
-                    <div class="am-product-buttons">
-
-                        <button
-                            type="button"
-                            class="am-product-button am-product-button-buy"
-                            data-am-product-buy
-                        >
-                            Beli
-                        </button>
-
-
-                        <button
-                            type="button"
-                            class="am-product-button am-product-button-cart"
-                            data-am-product-cart
-                        >
-                            Tambahkan ke Keranjang
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        `;
 
     }
 
@@ -1313,6 +1607,9 @@
 
             `;
 
+
+            updateCartCount();
+
             return;
 
         }
@@ -1329,20 +1626,21 @@
 
             function (item, index) {
 
-                const variantExtra =
-                    getStoredVariantExtra(
+                const price =
+                    getStoredItemPrice(
                         item
                     );
 
 
-                const price =
-                    Number(item.price) +
-                    variantExtra;
+                const quantity =
+                    Number(
+                        item.quantity || 0
+                    );
 
 
                 const subtotal =
                     price *
-                    Number(item.quantity);
+                    quantity;
 
 
                 total +=
@@ -1353,7 +1651,48 @@
                     "";
 
 
+                /*
+                 * V2:
+                 * Gunakan variantDetails
+                 */
+
                 if (
+                    Array.isArray(
+                        item.variantDetails
+                    ) &&
+                    item.variantDetails.length
+                ) {
+
+                    variantHTML =
+
+                        item.variantDetails
+
+                            .map(
+
+                                function (variant) {
+
+                                    return (
+
+                                        escapeHTML(
+                                            variant.name
+                                        ) +
+
+                                        ": " +
+
+                                        escapeHTML(
+                                            variant.label
+                                        )
+
+                                    );
+
+                                }
+
+                            )
+
+                            .join(" • ");
+
+
+                } else if (
                     item.variant &&
                     Object.keys(
                         item.variant
@@ -1361,24 +1700,33 @@
                 ) {
 
                     variantHTML =
+
                         Object.keys(
                             item.variant
                         )
+
                             .map(
 
                                 function (key) {
 
                                     return (
-                                        escapeHTML(key) +
+
+                                        escapeHTML(
+                                            key
+                                        ) +
+
                                         ": " +
+
                                         escapeHTML(
                                             item.variant[key]
                                         )
+
                                     );
 
                                 }
 
                             )
+
                             .join(" • ");
 
                 }
@@ -1386,13 +1734,20 @@
 
                 html += `
 
-                    <div class="am-cart-item">
+                    <div
+                        class="am-cart-item"
+                        data-am-cart-item="${index}"
+                    >
 
                         <div class="am-cart-item-image">
 
                             <img
-                                src="${escapeHTML(item.img)}"
-                                alt="${escapeHTML(item.name)}"
+                                src="${escapeHTML(
+                                    item.img || ""
+                                )}"
+                                alt="${escapeHTML(
+                                    item.name
+                                )}"
                             >
 
                         </div>
@@ -1401,7 +1756,9 @@
                         <div class="am-cart-item-info">
 
                             <h3 class="am-cart-item-name">
-                                ${escapeHTML(item.name)}
+                                ${escapeHTML(
+                                    item.name
+                                )}
                             </h3>
 
 
@@ -1421,7 +1778,9 @@
                                     ? `
                                         <p class="am-cart-item-note">
                                             Catatan:
-                                            ${escapeHTML(item.note)}
+                                            ${escapeHTML(
+                                                item.note
+                                            )}
                                         </p>
                                     `
                                     : ""
@@ -1430,7 +1789,19 @@
 
                             <div class="am-cart-item-price">
 
-                                ${formatPrice(price)}
+                                ${formatPrice(
+                                    price
+                                )}
+
+                            </div>
+
+
+                            <div class="am-cart-item-subtotal">
+
+                                Subtotal:
+                                ${formatPrice(
+                                    subtotal
+                                )}
 
                             </div>
 
@@ -1450,8 +1821,10 @@
                                 </button>
 
 
-                                <span class="am-cart-quantity-value">
-                                    ${item.quantity}
+                                <span
+                                    class="am-cart-quantity-value"
+                                >
+                                    ${quantity}
                                 </span>
 
 
@@ -1486,7 +1859,9 @@
 
 
         html += `
+
             </div>
+
 
             <div class="am-cart-summary">
 
@@ -1497,7 +1872,9 @@
                     </span>
 
                     <strong class="am-cart-total-value">
-                        ${formatPrice(total)}
+                        ${formatPrice(
+                            total
+                        )}
                     </strong>
 
                 </div>
@@ -1521,11 +1898,15 @@
                 </button>
 
             </div>
+
         `;
 
 
         container.innerHTML =
             html;
+
+
+        updateCartCount();
 
     }
 
@@ -1535,8 +1916,10 @@
     ===================================================== */
 
     function changeQuantity(
+
         index,
         amount
+
     ) {
 
         const cart =
@@ -1548,8 +1931,15 @@
         }
 
 
-        cart[index].quantity +=
-            amount;
+        const current =
+            Number(
+                cart[index].quantity || 0
+            );
+
+
+        cart[index].quantity =
+            current +
+            Number(amount);
 
 
         if (
@@ -1572,12 +1962,10 @@
 
 
     /* =====================================================
-       DELETE
+       DELETE CART ITEM
     ===================================================== */
 
-    function deleteCartItem(
-        index
-    ) {
+    function deleteCartItem(index) {
 
         const cart =
             getCart();
@@ -1612,7 +2000,7 @@
 
 
     /* =====================================================
-       CLEAR
+       CLEAR CART
     ===================================================== */
 
     function clearCart() {
@@ -1660,6 +2048,58 @@
 
 
     /* =====================================================
+       WHATSAPP OPEN
+    ===================================================== */
+
+    function openWhatsApp(message) {
+
+        const phone =
+            String(
+                AMProductSystem.whatsapp
+            )
+                .replace(
+                    /\D/g,
+                    ""
+                );
+
+
+        if (!phone) {
+
+            AMModal.toast({
+
+                icon: "error",
+
+                text:
+                    "Nomor WhatsApp belum dikonfigurasi."
+
+            });
+
+            return;
+
+        }
+
+
+        const url =
+            "https://wa.me/" +
+            phone +
+            "?text=" +
+            message;
+
+
+        window.open(
+
+            url,
+
+            "_blank",
+
+            "noopener,noreferrer"
+
+        );
+
+    }
+
+
+    /* =====================================================
        EVENTS
     ===================================================== */
 
@@ -1669,9 +2109,10 @@
 
         function (event) {
 
-
             /*
+             * ==============================================
              * BUY
+             * ==============================================
              */
 
             const buy =
@@ -1682,10 +2123,18 @@
 
             if (buy) {
 
+                const product =
+                    getCurrentProduct();
+
+
                 openProductForm(
-                    window.product,
+
+                    product,
+
                     "buy"
+
                 );
+
 
                 return;
 
@@ -1693,7 +2142,9 @@
 
 
             /*
-             * CART
+             * ==============================================
+             * ADD TO CART
+             * ==============================================
              */
 
             const cartButton =
@@ -1704,10 +2155,18 @@
 
             if (cartButton) {
 
+                const product =
+                    getCurrentProduct();
+
+
                 openProductForm(
-                    window.product,
+
+                    product,
+
                     "cart"
+
                 );
+
 
                 return;
 
@@ -1715,7 +2174,9 @@
 
 
             /*
+             * ==============================================
              * MINUS
+             * ==============================================
              */
 
             const minus =
@@ -1729,13 +2190,17 @@
                 changeQuantity(
 
                     parseInt(
+
                         minus.dataset.amMinus,
+
                         10
+
                     ),
 
                     -1
 
                 );
+
 
                 return;
 
@@ -1743,7 +2208,9 @@
 
 
             /*
+             * ==============================================
              * PLUS
+             * ==============================================
              */
 
             const plus =
@@ -1757,13 +2224,17 @@
                 changeQuantity(
 
                     parseInt(
+
                         plus.dataset.amPlus,
+
                         10
+
                     ),
 
                     1
 
                 );
+
 
                 return;
 
@@ -1771,7 +2242,9 @@
 
 
             /*
+             * ==============================================
              * DELETE
+             * ==============================================
              */
 
             const remove =
@@ -1785,11 +2258,15 @@
                 deleteCartItem(
 
                     parseInt(
+
                         remove.dataset.amDelete,
+
                         10
+
                     )
 
                 );
+
 
                 return;
 
@@ -1797,7 +2274,9 @@
 
 
             /*
+             * ==============================================
              * CHECKOUT
+             * ==============================================
              */
 
             const checkout =
@@ -1816,7 +2295,9 @@
 
 
             /*
+             * ==============================================
              * CLEAR
+             * ==============================================
              */
 
             const clear =
@@ -1839,12 +2320,49 @@
 
 
     /* =====================================================
+       STORAGE EVENT
+       
+       Berguna jika cart dibuka di tab lain.
+    ===================================================== */
+
+    window.addEventListener(
+
+        "storage",
+
+        function (event) {
+
+            if (
+                event.key ===
+                AMProductSystem.storageKey
+            ) {
+
+                updateCartCount();
+
+                renderCart();
+
+            }
+
+        }
+
+    );
+
+
+    /* =====================================================
        INIT
     ===================================================== */
 
     function init() {
 
-        renderProduct();
+        /*
+         * V2 TIDAK MERENDER PRODUK.
+         *
+         * Halaman produk hanya menyediakan:
+         *
+         * const product = {...}
+         *
+         * dan button.
+         */
+
 
         renderCart();
 
@@ -1868,6 +2386,12 @@
         getCartCount:
             getCartCount,
 
+        getProduct:
+            getCurrentProduct,
+
+        getProductPrice:
+            getProductPrice,
+
         addToCart:
             addProductToCart,
 
@@ -1878,10 +2402,17 @@
             updateCartCount,
 
         clearCart:
-            clearCart
+            clearCart,
+
+        openProductForm:
+            openProductForm
 
     };
 
+
+    /* =====================================================
+       START
+    ===================================================== */
 
     if (
         document.readyState ===
@@ -1889,8 +2420,11 @@
     ) {
 
         document.addEventListener(
+
             "DOMContentLoaded",
+
             init
+
         );
 
     } else {
