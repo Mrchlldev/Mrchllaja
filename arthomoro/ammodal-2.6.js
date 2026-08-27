@@ -1,6 +1,6 @@
 /*!
  * =========================================================
- * AMModal v2.5.0
+ * AMModal v2.6.0
  * Arthomoro Modal Library
  *
  * Single Library
@@ -37,14 +37,13 @@
     --am-modal-primary:
         var(--linkC, #2563eb);
 
-    --am-modal-text:
-        var(--textC, #172033);
+    --am-modal-text:;
 
     --am-modal-muted:
         #64748b;
 
     --am-modal-radius:
-        22px;
+        5px;
 
     --am-modal-shadow:
         0 24px 70px rgba(0,0,0,.18),
@@ -1709,11 +1708,17 @@
         width:
             100%;
 
+        max-width:
+            100%;
+
         max-height:
             calc(100dvh - 15px);
 
+        margin:
+            0;
+
         border-radius:
-            22px 22px 0 0;
+            5px 5px 0 0;
     }
 
 
