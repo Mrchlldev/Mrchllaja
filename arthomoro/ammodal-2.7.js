@@ -1,13 +1,13 @@
 /*!
  * =========================================================
- * AMModal v2.6.0
+ * AMModal v2.7.0
  * Arthomoro Modal Library
  *
  * Single Library
  * CSS + JavaScript
  *
  * CDN:
- * https://cdn.jsdelivr.net/gh/Mrchlldev/Mrchllaja@main/arthomoro/ammodal.js
+ * https://cdn.jsdelivr.net/gh/Mrchlldev/Mrchllaja@main/arthomoro/ammodal-2.7.js
  * =========================================================
  */
 
@@ -130,6 +130,9 @@
 
     max-height:
         calc(100dvh - 36px);
+
+    margin:
+        0;
 
     display: flex;
 
