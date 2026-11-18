@@ -43,7 +43,8 @@
 
   <link href='https://fonts.googleapis.com' rel='preconnect'/>
   <link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
-  <link href='https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Bebas+Neue&amp;family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=Syne:wght@700;800&amp;display=swap' rel='stylesheet'/>
+  <link as='style' href='https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Bebas+Neue&amp;family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=Syne:wght@700;800&amp;display=swap' onload='this.onload=null;this.rel=&quot;stylesheet&quot;' rel='preload'/>
+  <noscript><link href='https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Bebas+Neue&amp;family=DM+Mono:wght@400;500&amp;family=DM+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=Syne:wght@700;800&amp;display=swap' rel='stylesheet'/><style>.lazyload{display:none!important}</style></noscript>
 
   <!-- Variabel Tema untuk Blogger Theme Designer & Pengaturan Sidebar -->
       <b:skin version='1.3.3'><![CDATA[
@@ -96,8 +97,11 @@
   <Variable name="bui.glass.drawer" description="Glass Sidebar Navigation | (1) Disable (2) Enable" type="length" min="1px" max="2px" default="1px" value="1px"/>
   <Variable name="bui.glass.toc" description="Glass Table of Contents | (1) Disable (2) Enable" type="length" min="1px" max="2px" default="1px" value="2px"/>
 </Group>
+<Group description="Brutalism UI x Performance">
+  <Variable name="bui.perf.lazyload" description="Lazyload (lazysizes) | (1) Disable (2) Enable" type="length" min="1px" max="2px" default="2px" value="2px"/>
+</Group>
 */
-body{--bui-border-width:$(bui.border.width);--bui-shadow-offset:$(bui.shadow.offset);--bui-border-radius:$(bui.border.radius);--bui-mobile-menu-style:$(bui.mobile.menu.style);--bui-mobile-menu-radius:$(bui.mobile.menu.radius);--bui-glass-header:$(bui.glass.header);--bui-glass-dropdown:$(bui.glass.dropdown);--bui-glass-postmenu:$(bui.glass.postmenu);--bui-glass-drawer:$(bui.glass.drawer);--bui-glass-toc:$(bui.glass.toc);--bui-mobile-menu-labels:$(bui.mobile.menu.labels);--bui-mobile-menu-autohide:$(bui.mobile.menu.autohide);--bui-mobile-menu-backtop:$(bui.mobile.menu.backtop);--bui-mobile-menu-size:$(bui.mobile.menu.size);--bui-mobile-menu-shrink:$(bui.mobile.menu.shrink);--bui-card-style:$(bui.card.style);--bui-dropdown-style:$(bui.dropdown.style);--bui-footer-style:$(bui.footer.style);--bui-sidebar-style:$(bui.sidebar.style);--bui-toc-style:$(bui.toc.style);--bui-breadcrumb-style:$(bui.breadcrumb.style);--bui-glass-variants:$(bui.glass.variants);--bui-glass-search:$(bui.glass.search);--bui-skeleton:$(bui.skeleton);--bui-posts-layout:$(bui.posts.layout);--bui-font-display:$(bui.font.display);--bui-font-body:$(bui.font.body);--bui-header-sticky:$(bui.header.sticky);--bui-header-style:$(bui.header.style);--bui-header-width:$(bui.header.width);--bui-header-shrink:$(bui.header.shrink);--bui-header-progress:$(bui.header.progress);--bui-header-shadow:$(bui.header.shadow)}
+body{--bui-border-width:$(bui.border.width);--bui-shadow-offset:$(bui.shadow.offset);--bui-border-radius:$(bui.border.radius);--bui-mobile-menu-style:$(bui.mobile.menu.style);--bui-mobile-menu-radius:$(bui.mobile.menu.radius);--bui-glass-header:$(bui.glass.header);--bui-glass-dropdown:$(bui.glass.dropdown);--bui-glass-postmenu:$(bui.glass.postmenu);--bui-glass-drawer:$(bui.glass.drawer);--bui-glass-toc:$(bui.glass.toc);--bui-perf-lazyload:$(bui.perf.lazyload);--bui-mobile-menu-labels:$(bui.mobile.menu.labels);--bui-mobile-menu-autohide:$(bui.mobile.menu.autohide);--bui-mobile-menu-backtop:$(bui.mobile.menu.backtop);--bui-mobile-menu-size:$(bui.mobile.menu.size);--bui-mobile-menu-shrink:$(bui.mobile.menu.shrink);--bui-card-style:$(bui.card.style);--bui-dropdown-style:$(bui.dropdown.style);--bui-footer-style:$(bui.footer.style);--bui-sidebar-style:$(bui.sidebar.style);--bui-toc-style:$(bui.toc.style);--bui-breadcrumb-style:$(bui.breadcrumb.style);--bui-glass-variants:$(bui.glass.variants);--bui-glass-search:$(bui.glass.search);--bui-skeleton:$(bui.skeleton);--bui-posts-layout:$(bui.posts.layout);--bui-font-display:$(bui.font.display);--bui-font-body:$(bui.font.body);--bui-header-sticky:$(bui.header.sticky);--bui-header-style:$(bui.header.style);--bui-header-width:$(bui.header.width);--bui-header-shrink:$(bui.header.shrink);--bui-header-progress:$(bui.header.progress);--bui-header-shadow:$(bui.header.shadow)}
   
 
 
@@ -1198,7 +1202,7 @@ body.post-toc-open .post-toc-drawer{transform:translateX(0);visibility:visible}
   /* Sembunyikan tombol Table of Contents di postingan berlabel Product */
   body:has(.blog-post.is-post.is-product) .post-mobile-action.toc-trigger{display:none!important}
 }
-@media(min-width:681px){.post-mobile-actions,.post-share-sheet,.post-share-sheet-backdrop,.post-toc-drawer,.post-toc-backdrop{display:none!important}}
+@media(min-width:681px){.post-mobile-actions,.post-toc-drawer,.post-toc-backdrop{display:none!important}}
 
 
 /* ===== v1.1.5 follow-up: mobile menu layering, size, and card style controls ===== */
@@ -1957,8 +1961,7 @@ body[data-homepage=&#39;true&#39;] #mobileBottomNav .mob-nav-btn[data-item=&#39;
 @keyframes buiSkeletonShimmer{0%{background-position:200% 0}100%{background-position:-20% 0}}
 body[data-skeleton=&#39;on&#39;] .post-card:not(.bui-skeleton-ready){position:relative;overflow:hidden}
 body[data-skeleton=&#39;on&#39;] .post-card:not(.bui-skeleton-ready) .post-thumb img{opacity:0!important}
-body[data-skeleton=&#39;on&#39;] .post-card:not(.bui-skeleton-ready) .post-title,body[data-skeleton=&#39;on&#39;] .post-card:not(.bui-skeleton-ready) .post-snippet{min-height:1.1em;color:transparent!important}
-body[data-skeleton=&#39;on&#39;] .post-card:not(.bui-skeleton-ready) .post-thumb,body[data-skeleton=&#39;on&#39;] .post-card:not(.bui-skeleton-ready) .post-title,body[data-skeleton=&#39;on&#39;] .post-card:not(.bui-skeleton-ready) .post-snippet{background:linear-gradient(100deg,var(--surface) 20%,color-mix(in srgb,var(--line) 18%,var(--surface)) 38%,var(--surface) 56%)!important;background-size:220% 100%!important;background-position:200% 0;animation:buiSkeletonShimmer 1.6s linear infinite!important;border-radius:4px}
+body[data-skeleton=&#39;on&#39;] .post-card:not(.bui-skeleton-ready) .post-thumb{background:linear-gradient(100deg,var(--surface) 20%,color-mix(in srgb,var(--line) 18%,var(--surface)) 38%,var(--surface) 56%)!important;background-size:220% 100%!important;background-position:200% 0;animation:buiSkeletonShimmer 1.6s linear infinite!important;border-radius:4px}
 body[data-skeleton=&#39;on&#39;].item-view:not(.bui-page-skeleton-ready) .post-head-card .phc-title,body[data-skeleton=&#39;on&#39;].item-view:not(.bui-page-skeleton-ready) .post-head-card .phc-labels,body[data-skeleton=&#39;on&#39;].item-view:not(.bui-page-skeleton-ready) .post-head-card .phc-meta,body[data-skeleton=&#39;on&#39;].item-view:not(.bui-page-skeleton-ready) .post-head-card .phc-actions,body[data-skeleton=&#39;on&#39;].item-view:not(.bui-page-skeleton-ready) .page-heading{color:transparent!important;background:linear-gradient(100deg,var(--surface) 20%,color-mix(in srgb,var(--line) 18%,var(--surface)) 38%,var(--surface) 56%)!important;background-size:220% 100%!important;background-position:200% 0;animation:buiSkeletonShimmer 1.6s linear infinite!important;border-radius:5px}
 body[data-skeleton=&#39;on&#39;].item-view:not(.bui-page-skeleton-ready) .post-head-card .phc-title{min-height:2.3em}
 body[data-skeleton=&#39;on&#39;].item-view:not(.bui-page-skeleton-ready) .post-main-card .post-body&gt;*,body[data-skeleton=&#39;on&#39;].item-view:not(.bui-page-skeleton-ready) .post-main-card .post-body&gt;p,body[data-skeleton=&#39;on&#39;].item-view:not(.bui-page-skeleton-ready) .post-main-card .post-body&gt;h2,body[data-skeleton=&#39;on&#39;].item-view:not(.bui-page-skeleton-ready) .post-main-card .post-body&gt;h3,body[data-skeleton=&#39;on&#39;].item-view:not(.bui-page-skeleton-ready) .post-main-card .post-body&gt;h4,body[data-skeleton=&#39;on&#39;].item-view:not(.bui-page-skeleton-ready) .post-main-card .post-body&gt;ul,body[data-skeleton=&#39;on&#39;].item-view:not(.bui-page-skeleton-ready) .post-main-card .post-body&gt;ol,body[data-skeleton=&#39;on&#39;].item-view:not(.bui-page-skeleton-ready) .post-main-card .post-body&gt;blockquote,body[data-skeleton=&#39;on&#39;].item-view:not(.bui-page-skeleton-ready) .post-main-card .post-body&gt;figure,body[data-skeleton=&#39;on&#39;].item-view:not(.bui-page-skeleton-ready) .post-main-card .post-body&gt;table{color:transparent!important;background:linear-gradient(100deg,var(--surface) 20%,color-mix(in srgb,var(--line) 18%,var(--surface)) 38%,var(--surface) 56%)!important;background-size:220% 100%!important;background-position:200% 0;animation:buiSkeletonShimmer 1.6s linear infinite!important;border-radius:4px;min-height:1.15em}
@@ -1977,6 +1980,24 @@ body[data-homepage=&#39;true&#39;][data-post-layout=&#39;list&#39;] #postGrid .p
 @media(max-width:680px){body[data-homepage=&#39;true&#39;][data-post-layout=&#39;grid&#39;] #postGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px}body[data-homepage=&#39;true&#39;][data-post-layout=&#39;grid&#39;] #postGrid .post-card:not(.is-product) .post-card-body{padding:11px}body[data-homepage=&#39;true&#39;][data-post-layout=&#39;grid&#39;] #postGrid .post-card:not(.is-product) .post-title{font-size:.96rem}body[data-homepage=&#39;true&#39;][data-post-layout=&#39;grid&#39;] #postGrid .post-card:not(.is-product) .post-snippet{font-size:.78rem}body[data-homepage=&#39;true&#39;][data-post-layout=&#39;list&#39;] #postGrid .post-card:not(.is-product){grid-template-columns:112px minmax(0,1fr)}body[data-homepage=&#39;true&#39;][data-post-layout=&#39;list&#39;] #postGrid .post-card:not(.is-product) .post-thumb{min-height:100px}body[data-homepage=&#39;true&#39;][data-post-layout=&#39;list&#39;] #postGrid .post-card:not(.is-product) .post-card-body{padding:10px}body[data-homepage=&#39;true&#39;][data-post-layout=&#39;list&#39;] #postGrid .post-card:not(.is-product) .post-title{font-size:.92rem}body[data-homepage=&#39;true&#39;][data-post-layout=&#39;list&#39;] #postGrid .post-card:not(.is-product) .post-snippet{display:none}}
 @media(max-width:680px){body[data-footer-style=&#39;5&#39;] .site-footer{grid-template-columns:1fr}}
 @media(max-width:680px){.bui-live-search{top:8px;padding:16px;max-height:84vh}.bui-live-search-result{grid-template-columns:44px minmax(0,1fr) auto;padding:8px}.bui-live-search-result img{width:44px;height:44px}}
+
+/* ===== v1.1.8: PERFORMA (lazysizes, skeleton ringan, content-visibility) ===== */
+html.lz-on .lazyload,html.lz-on .lazyloading{opacity:0}
+html.lz-on .lazyloaded{opacity:1;transition:opacity .35s var(--ease)}
+.site-footer,.pop-block{content-visibility:auto;contain-intrinsic-size:auto 640px}
+body[data-skeleton='on'] .post-card:not(.bui-skeleton-ready) .post-thumb{animation:none!important;background:var(--surface2)!important;position:relative;overflow:hidden}
+body[data-skeleton='on'] .post-card:not(.bui-skeleton-ready) .post-thumb:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(100deg,transparent 25%,color-mix(in srgb,var(--text) 9%,transparent) 50%,transparent 75%);transform:translateX(-100%);animation:buiShimmerX 1.2s ease-in-out infinite}
+@keyframes buiShimmerX{to{transform:translateX(100%)}}
+@media(prefers-reduced-motion:reduce){body[data-skeleton='on'] .post-card:not(.bui-skeleton-ready) .post-thumb:after{animation:none}}
+/* Share: banyak opsi, dialog di desktop */
+.post-share-options{max-height:46vh;overflow:auto;padding:2px}
+.post-share-option{cursor:pointer;color:inherit}
+button.post-share-option{font-family:inherit}
+@media(min-width:681px){
+  .post-share-sheet,.post-share-sheet-backdrop{display:block!important}
+  .post-share-sheet{left:50%;right:auto;bottom:auto;top:50%;width:min(560px,94vw);max-height:86vh;border-radius:var(--bui-border-radius,10px);box-shadow:var(--shadow);transform:translate(-50%,-44%) scale(.96);opacity:0}
+  body.post-share-open .post-share-sheet{transform:translate(-50%,-50%) scale(1);opacity:1}
+}
 </style>
   </b:if>
 
@@ -2083,9 +2104,9 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
                 <a class='feat-thumb' expr:href='data:post.url'>
                   <span class='feat-badge'><b:include name='svg.star'/>FEATURED</span>
                   <b:if cond='data:post.featuredImage'>
-                    <img expr:alt='data:post.title' expr:src='data:post.featuredImage' loading='lazy'/>
+                    <img expr:alt='data:post.title' expr:src='resizeImage(data:post.featuredImage, 800, &quot;16:9&quot;)' expr:srcset='resizeImage(data:post.featuredImage, 480, &quot;16:9&quot;) + &quot; 480w, &quot; + resizeImage(data:post.featuredImage, 800, &quot;16:9&quot;) + &quot; 800w, &quot; + resizeImage(data:post.featuredImage, 1200, &quot;16:9&quot;) + &quot; 1200w&quot;' sizes='(min-width:900px) 520px, 100vw' decoding='async' fetchpriority='high' height='450' width='800'/>
                   <b:elseif cond='data:post.thumbnailUrl'/>
-                    <img expr:alt='data:post.title' expr:src='data:post.thumbnailUrl' loading='lazy'/>
+                    <img expr:alt='data:post.title' expr:src='data:post.thumbnailUrl' decoding='async' loading='lazy'/>
                   <b:else/>
                     <svg aria-hidden='true' class='feat-noimg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6' viewBox='0 0 24 24'><rect height='18' rx='4' width='18' x='3' y='3'/><circle cx='9' cy='9' r='1.6'/><path d='m21 16-5-5-8 9'/></svg>
                   </b:if>
@@ -2121,9 +2142,9 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
                   <li class='pop-item'>
                     <a class='pop-thumb' expr:href='data:post.href'>
                       <b:if cond='data:post.featuredImage'>
-                        <img expr:alt='data:post.title' expr:src='data:post.featuredImage' loading='lazy'/>
+                        <img class='lazyload' expr:alt='data:post.title' expr:data-src='resizeImage(data:post.featuredImage, 160, &quot;1:1&quot;)' expr:data-srcset='resizeImage(data:post.featuredImage, 160, &quot;1:1&quot;) + &quot; 160w, &quot; + resizeImage(data:post.featuredImage, 240, &quot;1:1&quot;) + &quot; 240w&quot;' data-sizes='auto' decoding='async' height='84' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' width='84'/><noscript><img expr:alt='data:post.title' expr:src='resizeImage(data:post.featuredImage, 160, &quot;1:1&quot;)'/></noscript>
                       <b:elseif cond='data:post.thumbnail'/>
-                        <img expr:alt='data:post.title' expr:src='data:post.thumbnail' loading='lazy'/>
+                        <img expr:alt='data:post.title' expr:src='data:post.thumbnail' decoding='async' loading='lazy'/>
                       <b:else/>
                         <svg aria-hidden='true' class='pop-noimg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6' viewBox='0 0 24 24'><rect height='18' rx='4' width='18' x='3' y='3'/><circle cx='9' cy='9' r='1.6'/><path d='m21 16-5-5-8 9'/></svg>
                       </b:if>
@@ -2224,6 +2245,13 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
               </b:if>
             </div>
           </b:if>
+          <b:if cond='data:view.isHomepage'>
+            <b:loop index='pi' values='data:posts' var='pp'>
+              <b:if cond='data:pi &lt; 2 and data:pp.featuredImage'>
+                <link as='image' expr:href='resizeImage(data:pp.featuredImage, 480, &quot;16:9&quot;)' fetchpriority='high' rel='preload'/>
+              </b:if>
+            </b:loop>
+          </b:if>
           <div class='post-grid' id='postGrid'>
             <b:if cond='data:posts.empty'>
               <div class='empty-state'>
@@ -2283,9 +2311,9 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
             <div class='post-thumb'>
               <a expr:aria-label='data:post.title' expr:href='data:post.url'>
                 <b:if cond='data:post.featuredImage'>
-                  <img expr:alt='data:post.title' expr:src='data:post.featuredImage' loading='lazy'/>
+                  <b:with value='data:post.labels any (l =&gt; l.name == &quot;Product&quot;) ? &quot;1:1&quot; : &quot;16:9&quot;' var='cr'><img class='lazyload' expr:alt='data:post.title' expr:data-src='resizeImage(data:post.featuredImage, 480, data:cr)' expr:data-srcset='resizeImage(data:post.featuredImage, 320, data:cr) + &quot; 320w, &quot; + resizeImage(data:post.featuredImage, 480, data:cr) + &quot; 480w, &quot; + resizeImage(data:post.featuredImage, 720, data:cr) + &quot; 720w, &quot; + resizeImage(data:post.featuredImage, 960, data:cr) + &quot; 960w&quot;' data-sizes='auto' decoding='async' expr:height='data:cr == &quot;1:1&quot; ? &quot;480&quot; : &quot;270&quot;' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' width='480'/><noscript><img expr:alt='data:post.title' expr:src='resizeImage(data:post.featuredImage, 480, data:cr)'/></noscript></b:with>
                 <b:elseif cond='data:post.thumbnailUrl'/>
-                  <img expr:alt='data:post.title' expr:src='data:post.thumbnailUrl' loading='lazy'/>
+                  <img expr:alt='data:post.title' expr:src='data:post.thumbnailUrl' decoding='async' loading='lazy'/>
                 <b:else/>
                   <div class='no-image'>No Thumbnail</div>
                 </b:if>
@@ -2545,7 +2573,7 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
     var ff=n('--bui-footer-style');
     b.setAttribute('data-font-display',pick({1:'syne',2:'bebas',3:'archivo'},n('--bui-font-display'),'syne'));
     b.setAttribute('data-font-body',pick({1:'space',2:'jakarta',3:'inter',4:'dmsans'},n('--bui-font-body'),'space'));
-    b.setAttribute('data-footer-style',String(ff>=1&&ff<=4?ff:1));
+    b.setAttribute('data-footer-style',String(ff>=1&&ff<=7?ff:1));
     b.setAttribute('data-mob-style',['classic','floating','pill','dock','tiles','minimal','glass','tabs','notch','slab'][(n('--bui-mobile-menu-style')||1)-1]||'classic');
     b.setAttribute('data-mob-labels',n('--bui-mobile-menu-labels')===2?'off':'on');
     b.setAttribute('data-mob-shrink',n('--bui-mobile-menu-shrink')===2?'on':'off');
@@ -2561,6 +2589,15 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
     b.setAttribute('data-glass-post',n('--bui-glass-postmenu')===2?'on':'off');
     b.setAttribute('data-glass-drawer',n('--bui-glass-drawer')===2?'on':'off');
     b.setAttribute('data-glass-toc',n('--bui-glass-toc')===2?'on':'off');
+    var sn=function(k,d){return n(k)||d};
+    b.setAttribute('data-sidebar-style',String(Math.min(6,sn('--bui-sidebar-style',1))));
+    b.setAttribute('data-toc-style',String(Math.min(5,sn('--bui-toc-style',1))));
+    b.setAttribute('data-breadcrumb-style',String(Math.min(5,sn('--bui-breadcrumb-style',2))));
+    b.setAttribute('data-glass-variants',sn('--bui-glass-variants',1)===2?'on':'off');
+    b.setAttribute('data-glass-search',sn('--bui-glass-search',2)===1?'off':'on');
+    b.setAttribute('data-skeleton',sn('--bui-skeleton',2)===1?'off':'on');
+    b.setAttribute('data-post-layout',sn('--bui-posts-layout',1)===2?'list':'grid');
+    document.documentElement.classList.add(n('--bui-perf-lazyload')===1?'lz-off':'lz-on');
   }catch(e){}
 })();
 //]]>
@@ -2853,9 +2890,9 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
                   <a class='feat-thumb' expr:href='data:post.url'>
                     <span class='feat-badge'><b:include name='svg.star'/>FEATURED</span>
                     <b:if cond='data:post.featuredImage'>
-                      <img expr:alt='data:post.title' expr:src='data:post.featuredImage' loading='lazy'/>
+                      <img expr:alt='data:post.title' expr:src='resizeImage(data:post.featuredImage, 800, &quot;16:9&quot;)' expr:srcset='resizeImage(data:post.featuredImage, 480, &quot;16:9&quot;) + &quot; 480w, &quot; + resizeImage(data:post.featuredImage, 800, &quot;16:9&quot;) + &quot; 800w, &quot; + resizeImage(data:post.featuredImage, 1200, &quot;16:9&quot;) + &quot; 1200w&quot;' sizes='(min-width:900px) 520px, 100vw' decoding='async' fetchpriority='high' height='450' width='800'/>
                     <b:elseif cond='data:post.thumbnailUrl'/>
-                      <img expr:alt='data:post.title' expr:src='data:post.thumbnailUrl' loading='lazy'/>
+                      <img expr:alt='data:post.title' expr:src='data:post.thumbnailUrl' decoding='async' loading='lazy'/>
                     <b:else/>
                       <svg aria-hidden='true' class='feat-noimg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6' viewBox='0 0 24 24'><rect height='18' rx='4' width='18' x='3' y='3'/><circle cx='9' cy='9' r='1.6'/><path d='m21 16-5-5-8 9'/></svg>
                     </b:if>
@@ -3178,7 +3215,14 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
                     </b:if>
                   </div>
                 </b:if>
-                <div class='post-grid' id='postGrid'>
+                <b:if cond='data:view.isHomepage'>
+            <b:loop index='pi' values='data:posts' var='pp'>
+              <b:if cond='data:pi &lt; 2 and data:pp.featuredImage'>
+                <link as='image' expr:href='resizeImage(data:pp.featuredImage, 480, &quot;16:9&quot;)' fetchpriority='high' rel='preload'/>
+              </b:if>
+            </b:loop>
+          </b:if>
+          <div class='post-grid' id='postGrid'>
                   <b:if cond='data:posts.empty'>
                     <div class='empty-state'>
                       <h3>Belum ada postingan.</h3>
@@ -3398,9 +3442,9 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
                   <div class='post-thumb'>
                     <a expr:aria-label='data:post.title' expr:href='data:post.url'>
                       <b:if cond='data:post.featuredImage'>
-                        <img expr:alt='data:post.title' expr:src='data:post.featuredImage' loading='lazy'/>
+                        <b:with value='data:post.labels any (l =&gt; l.name == &quot;Product&quot;) ? &quot;1:1&quot; : &quot;16:9&quot;' var='cr'><img class='lazyload' expr:alt='data:post.title' expr:data-src='resizeImage(data:post.featuredImage, 480, data:cr)' expr:data-srcset='resizeImage(data:post.featuredImage, 320, data:cr) + &quot; 320w, &quot; + resizeImage(data:post.featuredImage, 480, data:cr) + &quot; 480w, &quot; + resizeImage(data:post.featuredImage, 720, data:cr) + &quot; 720w, &quot; + resizeImage(data:post.featuredImage, 960, data:cr) + &quot; 960w&quot;' data-sizes='auto' decoding='async' expr:height='data:cr == &quot;1:1&quot; ? &quot;480&quot; : &quot;270&quot;' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' width='480'/><noscript><img expr:alt='data:post.title' expr:src='resizeImage(data:post.featuredImage, 480, data:cr)'/></noscript></b:with>
                       <b:elseif cond='data:post.thumbnailUrl'/>
-                        <img expr:alt='data:post.title' expr:src='data:post.thumbnailUrl' loading='lazy'/>
+                        <img expr:alt='data:post.title' expr:src='data:post.thumbnailUrl' decoding='async' loading='lazy'/>
                       <b:else/>
                         <div class='no-image'>No Thumbnail</div>
                       </b:if>
@@ -4111,9 +4155,9 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
                         <li class='pop-item'>
                           <a class='pop-thumb' expr:href='data:post.href'>
                             <b:if cond='data:post.featuredImage'>
-                              <img expr:alt='data:post.title' expr:src='data:post.featuredImage' loading='lazy'/>
+                              <img class='lazyload' expr:alt='data:post.title' expr:data-src='resizeImage(data:post.featuredImage, 160, &quot;1:1&quot;)' expr:data-srcset='resizeImage(data:post.featuredImage, 160, &quot;1:1&quot;) + &quot; 160w, &quot; + resizeImage(data:post.featuredImage, 240, &quot;1:1&quot;) + &quot; 240w&quot;' data-sizes='auto' decoding='async' height='84' src='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7' width='84'/><noscript><img expr:alt='data:post.title' expr:src='resizeImage(data:post.featuredImage, 160, &quot;1:1&quot;)'/></noscript>
                             <b:elseif cond='data:post.thumbnail'/>
-                              <img expr:alt='data:post.title' expr:src='data:post.thumbnail' loading='lazy'/>
+                              <img expr:alt='data:post.title' expr:src='data:post.thumbnail' decoding='async' loading='lazy'/>
                             <b:else/>
                               <svg aria-hidden='true' class='pop-noimg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.6' viewBox='0 0 24 24'><rect height='18' rx='4' width='18' x='3' y='3'/><circle cx='9' cy='9' r='1.6'/><path d='m21 16-5-5-8 9'/></svg>
                             </b:if>
@@ -5189,7 +5233,32 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
 
   <div aria-live='polite' class='notice' id='notice'/>
 
+    <!-- lazysizes v5.3.2 (MIT, (c) Alexander Farkas) + plugin unveilhooks. Aktif/nonaktif: Tema > Sesuaikan > Lanjutan > Brutalism UI x Performance -->
   <script type='text/javascript'>
+//<![CDATA[
+(function(){
+  var on=document.documentElement.classList.contains('lz-on');
+  if(!on){
+    var els=document.querySelectorAll('.lazyload');
+    for(var i=0;i<els.length;i++){
+      var el=els[i],d=el.getAttribute('data-src'),ss=el.getAttribute('data-srcset'),sz=el.getAttribute('data-sizes'),bg=el.getAttribute('data-bg');
+      if(ss)el.setAttribute('srcset',ss);
+      if(sz&&sz!=='auto')el.setAttribute('sizes',sz);
+      if(d)el.setAttribute('src',d);
+      if(bg)el.style.backgroundImage='url('+bg+')';
+      el.classList.remove('lazyload');
+    }
+    return;
+  }
+  window.lazySizesConfig=window.lazySizesConfig||{};
+  var c=window.lazySizesConfig;
+  c.loadMode=2;c.expFactor=1.5;c.preloadAfterLoad=false;c.loadHidden=false;
+  !function(e){var t=function(u,D,f){"use strict";var k,H;if(function(){var e;var t={lazyClass:"lazyload",loadedClass:"lazyloaded",loadingClass:"lazyloading",preloadClass:"lazypreload",errorClass:"lazyerror",autosizesClass:"lazyautosizes",fastLoadedClass:"ls-is-cached",iframeLoadMode:0,srcAttr:"data-src",srcsetAttr:"data-srcset",sizesAttr:"data-sizes",minSize:40,customMedia:{},init:true,expFactor:1.5,hFac:.8,loadMode:2,loadHidden:true,ricTimeout:0,throttleDelay:125};H=u.lazySizesConfig||u.lazysizesConfig||{};for(e in t){if(!(e in H)){H[e]=t[e]}}}(),!D||!D.getElementsByClassName){return{init:function(){},cfg:H,noSupport:true}}var O=D.documentElement,i=u.HTMLPictureElement,P="addEventListener",$="getAttribute",q=u[P].bind(u),I=u.setTimeout,U=u.requestAnimationFrame||I,o=u.requestIdleCallback,j=/^picture$/i,r=["load","error","lazyincluded","_lazyloaded"],a={},G=Array.prototype.forEach,J=function(e,t){if(!a[t]){a[t]=new RegExp("(\\s|^)"+t+"(\\s|$)")}return a[t].test(e[$]("class")||"")&&a[t]},K=function(e,t){if(!J(e,t)){e.setAttribute("class",(e[$]("class")||"").trim()+" "+t)}},Q=function(e,t){var a;if(a=J(e,t)){e.setAttribute("class",(e[$]("class")||"").replace(a," "))}},V=function(t,a,e){var i=e?P:"removeEventListener";if(e){V(t,a)}r.forEach(function(e){t[i](e,a)})},X=function(e,t,a,i,r){var n=D.createEvent("Event");if(!a){a={}}a.instance=k;n.initEvent(t,!i,!r);n.detail=a;e.dispatchEvent(n);return n},Y=function(e,t){var a;if(!i&&(a=u.picturefill||H.pf)){if(t&&t.src&&!e[$]("srcset")){e.setAttribute("srcset",t.src)}a({reevaluate:true,elements:[e]})}else if(t&&t.src){e.src=t.src}},Z=function(e,t){return(getComputedStyle(e,null)||{})[t]},s=function(e,t,a){a=a||e.offsetWidth;while(a<H.minSize&&t&&!e._lazysizesWidth){a=t.offsetWidth;t=t.parentNode}return a},ee=function(){var a,i;var t=[];var r=[];var n=t;var s=function(){var e=n;n=t.length?r:t;a=true;i=false;while(e.length){e.shift()()}a=false};var e=function(e,t){if(a&&!t){e.apply(this,arguments)}else{n.push(e);if(!i){i=true;(D.hidden?I:U)(s)}}};e._lsFlush=s;return e}(),te=function(a,e){return e?function(){ee(a)}:function(){var e=this;var t=arguments;ee(function(){a.apply(e,t)})}},ae=function(e){var a;var i=0;var r=H.throttleDelay;var n=H.ricTimeout;var t=function(){a=false;i=f.now();e()};var s=o&&n>49?function(){o(t,{timeout:n});if(n!==H.ricTimeout){n=H.ricTimeout}}:te(function(){I(t)},true);return function(e){var t;if(e=e===true){n=33}if(a){return}a=true;t=r-(f.now()-i);if(t<0){t=0}if(e||t<9){s()}else{I(s,t)}}},ie=function(e){var t,a;var i=99;var r=function(){t=null;e()};var n=function(){var e=f.now()-a;if(e<i){I(n,i-e)}else{(o||r)(r)}};return function(){a=f.now();if(!t){t=I(n,i)}}},e=function(){var v,m,c,h,e;var y,z,g,p,C,b,A;var n=/^img$/i;var d=/^iframe$/i;var E="onscroll"in u&&!/(gle|ing)bot/.test(navigator.userAgent);var _=0;var w=0;var M=0;var N=-1;var L=function(e){M--;if(!e||M<0||!e.target){M=0}};var x=function(e){if(A==null){A=Z(D.body,"visibility")=="hidden"}return A||!(Z(e.parentNode,"visibility")=="hidden"&&Z(e,"visibility")=="hidden")};var W=function(e,t){var a;var i=e;var r=x(e);g-=t;b+=t;p-=t;C+=t;while(r&&(i=i.offsetParent)&&i!=D.body&&i!=O){r=(Z(i,"opacity")||1)>0;if(r&&Z(i,"overflow")!="visible"){a=i.getBoundingClientRect();r=C>a.left&&p<a.right&&b>a.top-1&&g<a.bottom+1}}return r};var t=function(){var e,t,a,i,r,n,s,o,l,u,f,c;var d=k.elements;if((h=H.loadMode)&&M<8&&(e=d.length)){t=0;N++;for(;t<e;t++){if(!d[t]||d[t]._lazyRace){continue}if(!E||k.prematureUnveil&&k.prematureUnveil(d[t])){R(d[t]);continue}if(!(o=d[t][$]("data-expand"))||!(n=o*1)){n=w}if(!u){u=!H.expand||H.expand<1?O.clientHeight>500&&O.clientWidth>500?500:370:H.expand;k._defEx=u;f=u*H.expFactor;c=H.hFac;A=null;if(w<f&&M<1&&N>2&&h>2&&!D.hidden){w=f;N=0}else if(h>1&&N>1&&M<6){w=u}else{w=_}}if(l!==n){y=innerWidth+n*c;z=innerHeight+n;s=n*-1;l=n}a=d[t].getBoundingClientRect();if((b=a.bottom)>=s&&(g=a.top)<=z&&(C=a.right)>=s*c&&(p=a.left)<=y&&(b||C||p||g)&&(H.loadHidden||x(d[t]))&&(m&&M<3&&!o&&(h<3||N<4)||W(d[t],n))){R(d[t]);r=true;if(M>9){break}}else if(!r&&m&&!i&&M<4&&N<4&&h>2&&(v[0]||H.preloadAfterLoad)&&(v[0]||!o&&(b||C||p||g||d[t][$](H.sizesAttr)!="auto"))){i=v[0]||d[t]}}if(i&&!r){R(i)}}};var a=ae(t);var S=function(e){var t=e.target;if(t._lazyCache){delete t._lazyCache;return}L(e);K(t,H.loadedClass);Q(t,H.loadingClass);V(t,B);X(t,"lazyloaded")};var i=te(S);var B=function(e){i({target:e.target})};var T=function(e,t){var a=e.getAttribute("data-load-mode")||H.iframeLoadMode;if(a==0){e.contentWindow.location.replace(t)}else if(a==1){e.src=t}};var F=function(e){var t;var a=e[$](H.srcsetAttr);if(t=H.customMedia[e[$]("data-media")||e[$]("media")]){e.setAttribute("media",t)}if(a){e.setAttribute("srcset",a)}};var s=te(function(t,e,a,i,r){var n,s,o,l,u,f;if(!(u=X(t,"lazybeforeunveil",e)).defaultPrevented){if(i){if(a){K(t,H.autosizesClass)}else{t.setAttribute("sizes",i)}}s=t[$](H.srcsetAttr);n=t[$](H.srcAttr);if(r){o=t.parentNode;l=o&&j.test(o.nodeName||"")}f=e.firesLoad||"src"in t&&(s||n||l);u={target:t};K(t,H.loadingClass);if(f){clearTimeout(c);c=I(L,2500);V(t,B,true)}if(l){G.call(o.getElementsByTagName("source"),F)}if(s){t.setAttribute("srcset",s)}else if(n&&!l){if(d.test(t.nodeName)){T(t,n)}else{t.src=n}}if(r&&(s||l)){Y(t,{src:n})}}if(t._lazyRace){delete t._lazyRace}Q(t,H.lazyClass);ee(function(){var e=t.complete&&t.naturalWidth>1;if(!f||e){if(e){K(t,H.fastLoadedClass)}S(u);t._lazyCache=true;I(function(){if("_lazyCache"in t){delete t._lazyCache}},9)}if(t.loading=="lazy"){M--}},true)});var R=function(e){if(e._lazyRace){return}var t;var a=n.test(e.nodeName);var i=a&&(e[$](H.sizesAttr)||e[$]("sizes"));var r=i=="auto";if((r||!m)&&a&&(e[$]("src")||e.srcset)&&!e.complete&&!J(e,H.errorClass)&&J(e,H.lazyClass)){return}t=X(e,"lazyunveilread").detail;if(r){re.updateElem(e,true,e.offsetWidth)}e._lazyRace=true;M++;s(e,t,r,i,a)};var r=ie(function(){H.loadMode=3;a()});var o=function(){if(H.loadMode==3){H.loadMode=2}r()};var l=function(){if(m){return}if(f.now()-e<999){I(l,999);return}m=true;H.loadMode=3;a();q("scroll",o,true)};return{_:function(){e=f.now();k.elements=D.getElementsByClassName(H.lazyClass);v=D.getElementsByClassName(H.lazyClass+" "+H.preloadClass);q("scroll",a,true);q("resize",a,true);q("pageshow",function(e){if(e.persisted){var t=D.querySelectorAll("."+H.loadingClass);if(t.length&&t.forEach){U(function(){t.forEach(function(e){if(e.complete){R(e)}})})}}});if(u.MutationObserver){new MutationObserver(a).observe(O,{childList:true,subtree:true,attributes:true})}else{O[P]("DOMNodeInserted",a,true);O[P]("DOMAttrModified",a,true);setInterval(a,999)}q("hashchange",a,true);["focus","mouseover","click","load","transitionend","animationend"].forEach(function(e){D[P](e,a,true)});if(/d$|^c/.test(D.readyState)){l()}else{q("load",l);D[P]("DOMContentLoaded",a);I(l,2e4)}if(k.elements.length){t();ee._lsFlush()}else{a()}},checkElems:a,unveil:R,_aLSL:o}}(),re=function(){var a;var n=te(function(e,t,a,i){var r,n,s;e._lazysizesWidth=i;i+="px";e.setAttribute("sizes",i);if(j.test(t.nodeName||"")){r=t.getElementsByTagName("source");for(n=0,s=r.length;n<s;n++){r[n].setAttribute("sizes",i)}}if(!a.detail.dataAttr){Y(e,a.detail)}});var i=function(e,t,a){var i;var r=e.parentNode;if(r){a=s(e,r,a);i=X(e,"lazybeforesizes",{width:a,dataAttr:!!t});if(!i.defaultPrevented){a=i.detail.width;if(a&&a!==e._lazysizesWidth){n(e,r,i,a)}}}};var e=function(){var e;var t=a.length;if(t){e=0;for(;e<t;e++){i(a[e])}}};var t=ie(e);return{_:function(){a=D.getElementsByClassName(H.autosizesClass);q("resize",t)},checkElems:t,updateElem:i}}(),t=function(){if(!t.i&&D.getElementsByClassName){t.i=true;re._();e._()}};return I(function(){H.init&&t()}),k={cfg:H,autoSizer:re,loader:e,init:t,uP:Y,aC:K,rC:Q,hC:J,fire:X,gW:s,rAF:ee}}(e,e.document,Date);e.lazySizes=t,"object"==typeof module&&module.exports&&(module.exports=t)}("undefined"!=typeof window?window:{});
+  !function(e,t){var a=function(){t(e.lazySizes),e.removeEventListener("lazyunveilread",a,!0)};t=t.bind(null,e,e.document),"object"==typeof module&&module.exports?t(require("lazysizes")):"function"==typeof define&&define.amd?define(["lazysizes"],t):e.lazySizes?a():e.addEventListener("lazyunveilread",a,!0)}(window,function(e,i,o){"use strict";var l,d,u={};function s(e,t,a){var n,r;u[e]||(n=i.createElement(t?"link":"script"),r=i.getElementsByTagName("script")[0],t?(n.rel="stylesheet",n.href=e):(n.onload=function(){n.onerror=null,n.onload=null,a()},n.onerror=n.onload,n.src=e),u[e]=!0,u[n.src||n.href]=!0,r.parentNode.insertBefore(n,r))}i.addEventListener&&(l=function(e,t){var a=i.createElement("img");a.onload=function(){a.onload=null,a.onerror=null,a=null,t()},a.onerror=a.onload,a.src=e,a&&a.complete&&a.onload&&a.onload()},addEventListener("lazybeforeunveil",function(e){var t,a,n;if(e.detail.instance==o&&!e.defaultPrevented){var r=e.target;if("none"==r.preload&&(r.preload=r.getAttribute("data-preload")||"auto"),null!=r.getAttribute("data-autoplay"))if(r.getAttribute("data-expand")&&!r.autoplay)try{r.play()}catch(e){}else requestAnimationFrame(function(){r.setAttribute("data-expand","-10"),o.aC(r,o.cfg.lazyClass)});(t=r.getAttribute("data-link"))&&s(t,!0),(t=r.getAttribute("data-script"))&&(e.detail.firesLoad=!0,s(t,null,function(){e.detail.firesLoad=!1,o.fire(r,"_lazyloaded",{},!0,!0)})),(t=r.getAttribute("data-require"))&&(o.cfg.requireJs?o.cfg.requireJs([t]):s(t)),(a=r.getAttribute("data-bg"))&&(e.detail.firesLoad=!0,l(a,function(){r.style.backgroundImage="url("+(d.test(a)?JSON.stringify(a):a)+")",e.detail.firesLoad=!1,o.fire(r,"_lazyloaded",{},!0,!0)})),(n=r.getAttribute("data-poster"))&&(e.detail.firesLoad=!0,l(n,function(){r.poster=n,e.detail.firesLoad=!1,o.fire(r,"_lazyloaded",{},!0,!0)}))}},!(d=/\(|\)|\s|'/)))});
+})();
+//]]>
+  </script>
+<script type='text/javascript'>
 //<![CDATA[
 (function(){
   'use strict';
@@ -5239,7 +5308,31 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
     n.classList.add('show');clearTimeout(showNotice.timer);showNotice.timer=setTimeout(function(){n.classList.remove('show')},3400);
   }
   function sameId(a,b){return String(a)===String(b)}
-  function thumbHTML(src){return src?'<img src="'+escapeHTML(src)+'" alt="" loading="lazy" onerror="this.outerHTML=\'<div class=&quot;thumb-ph&quot;>No Thumbnail</div>\'"/>':'<div class="thumb-ph">No Thumbnail</div>'}
+  /* ---------- v1.1.8: Lazyload (lazysizes) + ukuran gambar Blogger ---------- */
+  var LZ_ON=document.documentElement.classList.contains('lz-on');
+  var LZ_GIF='data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+  function resizeUrl(u,w,crop){
+    u=String(u||'');
+    if(!/(googleusercontent\.com|blogspot\.com|ggpht\.com|bp\.blogspot\.com)/.test(u))return u;
+    var sz='s'+w+(crop?'-c':'');
+    return u.replace(/\/s\d+(-c)?\//,'/'+sz+'/').replace(/\/w\d+-h\d+(-[a-z-]+)?\//,'/'+sz+'/').replace(/=s\d+(-c)?(?=$|\?)/,'='+sz).replace(/=w\d+-h\d+(-[a-z-]+)?(?=$|\?)/,'='+sz);
+  }
+  function lzImg(src,alt,cls,w,h,crop,onerr){
+    src=String(src||'');
+    var big=resizeUrl(src,w,crop),resized=big!==src;
+    var set=resized?[Math.round(w*.67),w,Math.round(w*1.5)].map(function(x){return resizeUrl(src,x,crop)+' '+x+'w'}).join(', '):'';
+    var er=onerr?' onerror="'+onerr+'"':'';
+    if(LZ_ON)return '<img class="lazyload'+(cls?' '+cls:'')+'" alt="'+escapeHTML(alt||'')+'" data-src="'+escapeHTML(big)+'"'+(set?' data-srcset="'+escapeHTML(set)+'" data-sizes="auto"':'')+' decoding="async" width="'+w+'" height="'+h+'" src="'+LZ_GIF+'"'+er+'/>';
+    return '<img'+(cls?' class="'+cls+'"':'')+' alt="'+escapeHTML(alt||'')+'" src="'+escapeHTML(big)+'"'+(set?' srcset="'+escapeHTML(set)+'"':'')+' loading="lazy" decoding="async" width="'+w+'" height="'+h+'"'+er+'/>';
+  }
+  function initBodyImages(){
+    $$('.article-content img').forEach(function(im){
+      var w=im.getAttribute('data-original-width'),h=im.getAttribute('data-original-height');
+      if(w&&h&&!im.getAttribute('width')&&!im.getAttribute('height')){im.setAttribute('width',w);im.setAttribute('height',h)}
+      if(!im.getAttribute('decoding'))im.setAttribute('decoding','async');
+    });
+  }
+  function thumbHTML(src){return src?lzImg(src,'','',160,160,true,'this.outerHTML=\'<div class=&quot;thumb-ph&quot;>No Thumbnail</div>\''):'<div class="thumb-ph">No Thumbnail</div>'}
 
   /* ---------- Read Key-Value Settings from LinkList3 ---------- */
   function readKVSettings(){
@@ -5753,7 +5846,7 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
             var isAct=(opt===firstAvail);
             html+='<button type="button" class="bui-cs-opt'+(isAct?' active':'')+'" data-gidx="'+gIdx+'" data-oidx="'+oIdx+'"'+(out?' disabled="disabled"':'')+'>'+
               (opt.badge?'<span class="bui-cs-opt-badge">'+escapeHTML(opt.badge)+'</span>':'')+
-              (opt.image?'<img class="bui-cs-opt-img" src="'+escapeHTML(opt.image)+'" alt="" loading="lazy"/>':'')+
+              (opt.image?lzImg(opt.image,'','bui-cs-opt-img',160,160,true):'')+
               '<span class="bui-cs-opt-meta"><span class="bui-cs-opt-name">'+escapeHTML(opt.label)+'</span><span class="bui-cs-opt-delta">'+(out?'Stok Habis':escapeHTML(dTxt))+'</span></span></button>';
           });
           html+='</div></div>';
@@ -5996,7 +6089,7 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
       ticker(['New drop','In stock','Digital goods','Instant access','Made with intent'])+
       '<div class="ps" id="psRoot"><div class="ps-bg" id="psBg"></div><div class="ps-main"><div class="ps-text" id="psText"></div><div class="ps-visual" id="psVisual"></div></div>'+
       '<div class="ps-rail" id="psRail">'+list.map(function(p,i){
-        return '<button class="ps-pill" type="button" data-i="'+i+'" aria-label="'+escapeHTML(p.title)+'"><span class="th">'+(p.image?'<img src="'+escapeHTML(p.image)+'" alt="" loading="lazy"/>':noThumb())+'</span><span><strong>'+escapeHTML(p.title)+'</strong><small>'+(p.price?money(p.price):'Detail')+'</small></span><span class="bar"></span></button>';
+        return '<button class="ps-pill" type="button" data-i="'+i+'" aria-label="'+escapeHTML(p.title)+'"><span class="th">'+(p.image?lzImg(p.image,'','',160,160,true):noThumb())+'</span><span><strong>'+escapeHTML(p.title)+'</strong><small>'+(p.price?money(p.price):'Detail')+'</small></span><span class="bar"></span></button>';
       }).join('')+'</div></div>';
     var root=$('#psRoot',stage),bg=$('#psBg',stage),text=$('#psText',stage),visual=$('#psVisual',stage),rail=$('#psRail',stage),pills=$$('.ps-pill',stage);
     root.style.setProperty('--ph-dur',(DUR/1000)+'s');
@@ -6015,7 +6108,7 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
         '<div class="ps-cta"><a class="button dark" href="'+escapeHTML(p.url)+'"><span>DETAIL PRODUCT</span>'+SVG_ARROW_UP_RIGHT+'</a>'+
         (p.price&&p.stock>0?'<button class="button ghost" type="button" data-add="'+idx+'">'+SVG_CART+'<span>ADD TO CART</span></button>':'')+'</div>'+
         '<div class="ps-meta"><span>'+n+' products</span><span>from '+(min?money(min):'-')+'</span><span>'+inStock+' in stock</span></div>';
-      visual.innerHTML='<a class="ps-card" href="'+escapeHTML(p.url)+'" aria-label="'+escapeHTML(p.title)+'">'+(p.image?'<img src="'+escapeHTML(p.image)+'" alt=""/>':noThumb())+'</a>'+
+      visual.innerHTML='<a class="ps-card" href="'+escapeHTML(p.url)+'" aria-label="'+escapeHTML(p.title)+'">'+(p.image?'<img src="'+escapeHTML(resizeUrl(p.image,640,false))+'" alt="" decoding="async" fetchpriority="high"/>':noThumb())+'</a>'+
         '<span class="ps-sticker">'+sticker+'</span>'+
         '<div class="ps-controls"><button type="button" data-ps="prev" aria-label="Previous product">'+SVG_ARROW_LEFT+'</button><button type="button" data-ps="next" aria-label="Next product">'+SVG_ARROW_RIGHT+'</button></div>';
       pills.forEach(function(t,k){t.classList.remove('active');if(k===idx){void t.offsetWidth;t.classList.add('active')}});
@@ -6044,12 +6137,12 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
     list.forEach(function(p){p.labels.forEach(function(l){if(l!=='Product'&&!seen[l]){seen[l]=1;topics.push(l)}})});
     var now=lead.date||new Date();
     function card(p){
-      return '<a class="bh-card" href="'+escapeHTML(p.url)+'"><div class="bh-card-img">'+(p.image?'<img src="'+escapeHTML(p.image)+'" alt="" loading="lazy"/>':noThumb())+'</div>'+
+      return '<a class="bh-card" href="'+escapeHTML(p.url)+'"><div class="bh-card-img">'+(p.image?lzImg(p.image,'','',480,300,true):noThumb())+'</div>'+
         '<div class="bh-card-body"><span class="bh-tag">'+escapeHTML(p.labels[0]||'Post')+'</span><h4>'+escapeHTML(p.title)+'</h4><small>'+escapeHTML(fmtDate(p.date))+' / '+minRead(p.words)+' min read</small></div></a>';
     }
     stage.innerHTML=heroKicker('Fresh from the blog','/search','All posts')+
       ticker(['Latest stories','Fresh posts','Read','Save','Share','Stay curious'])+
-      '<div class="bh"><a class="bh-lead" href="'+escapeHTML(lead.url)+'"><div class="bh-lead-img">'+(lead.image?'<img src="'+escapeHTML(lead.image)+'" alt=""/>':noThumb())+'</div>'+
+      '<div class="bh"><a class="bh-lead" href="'+escapeHTML(lead.url)+'"><div class="bh-lead-img">'+(lead.image?'<img src="'+escapeHTML(resizeUrl(lead.image,800,false))+'" alt="" decoding="async" fetchpriority="high"/>':noThumb())+'</div>'+
       '<div class="bh-flag"><span>Featured</span><span class="alt">'+pad2(now.getMonth()+1)+'/'+now.getFullYear()+'</span></div><span class="bh-big">01</span>'+
       '<div class="bh-lead-body"><h3>'+escapeHTML(lead.title)+'</h3><p>'+escapeHTML(lead.text)+'</p><div class="bh-meta"><span class="readbar">READ STORY '+SVG_ARROW_RIGHT+'</span><span>'+escapeHTML(lead.labels[0]||'Post')+'</span><span>'+minRead(lead.words)+' min read</span></div></div></a>'+
       side.map(card).join('')+
@@ -6330,7 +6423,7 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
         else if(y<lastY-8||y<60)hdr.classList.remove('is-hidden');
       }
       if(bar&&document.body.classList.contains('item-view')){
-        var max=(document.documentElement.scrollHeight||1)-window.innerHeight;
+        var max=docMax();
         bar.style.width=(max>0?Math.min(100,Math.max(0,y/max*100)):0)+'%';
       }
       lastY=y;ticking=false;
@@ -6461,15 +6554,22 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
     if(label)label.textContent=(countMatch?countMatch[0]+' ':'')+'comments';
     var shareOptions=$('#postShareOptions');
     var encoded=encodeURIComponent(url),encTitle=encodeURIComponent(title);
-    var socials=[
-      {name:'WhatsApp',href:'https://wa.me/?text='+encTitle+'%20'+encoded,svg:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.5A8.5 8.5 0 1 1 20.5 11.5Z"/><path d="M8.5 8.2c.4 2.4 2 4.2 4.5 5.1l1.2-1.2 2 .9c-.1 1.2-.8 2-2 2.1-3.6-.3-6.8-3.5-7.1-7.1.1-1.2.9-1.9 2.1-2l.9 2z"/></svg>'},
-      {name:'Facebook',href:'https://www.facebook.com/sharer/sharer.php?u='+encoded,svg:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.4 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.2V13H10v8z"/></svg>'},
-      {name:'Telegram',href:'https://t.me/share/url?url='+encoded+'&text='+encTitle,svg:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>'},
-      {name:'X / Twitter',href:'https://twitter.com/intent/tweet?url='+encoded+'&text='+encTitle,svg:'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.6 5.6 22H2.4l7.3-8.4L1.8 2h6.4l4.5 6.8zM17.8 20h1.7L7.3 3.9H5.5z"/></svg>'}
-    ];
-    if(shareOptions)shareOptions.innerHTML=socials.map(function(x){return '<a class="post-share-option" href="'+x.href+'" target="_blank" rel="noopener noreferrer">'+x.svg+'<span>'+x.name+'</span></a>'}).join('');
+    var socials=buildShareItems(url,title);
+    if(shareOptions){
+      shareOptions.innerHTML=socials.map(function(x){
+        if(x.act)return '<button class="post-share-option" type="button" data-share-act="'+x.act+'">'+iconSVG(x.icon)+'<span>'+escapeHTML(x.name)+'</span></button>';
+        return '<a class="post-share-option" href="'+escapeHTML(x.href)+'"'+(x.self?'':' target="_blank" rel="noopener noreferrer"')+'>'+iconSVG(x.icon)+'<span>'+escapeHTML(x.name)+'</span></a>';
+      }).join('');
+      shareOptions.addEventListener('click',function(e){
+        var bt=e.target.closest?e.target.closest('[data-share-act]'):null;if(!bt)return;
+        var a=bt.getAttribute('data-share-act');
+        if(a==='print'){window.print()}
+        else if(a==='native'&&navigator.share){navigator.share({title:title,url:location.href.split('#')[0]}).catch(function(){})}
+      });
+    }
     var input=$('#postShareLink');if(input)input.value=url;
     function setOpen(open){document.body.classList.toggle('post-share-open',open);sheet.setAttribute('aria-hidden',String(!open));backdrop.setAttribute('aria-hidden',String(!open));if(open){if(input)input.value=location.href.split('#')[0];var close=$('#postShareClose');if(close)close.focus()}else trigger.focus()}
+    shareOpener=function(){setOpen(true)};
     trigger.addEventListener('click',function(){setOpen(true)});
     backdrop.addEventListener('click',function(){setOpen(false)});
     var close=$('#postShareClose');if(close)close.addEventListener('click',function(){setOpen(false)});
@@ -6567,7 +6667,7 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
     var lastY=window.pageYOffset||0,ticking=false;
     function onScrollBar(){
       var y=window.pageYOffset||0;
-      var max=(document.documentElement.scrollHeight||1)-window.innerHeight;
+      var max=docMax();
       var nearBottom=max>120 && y>=max-110;
       if(nearBottom||(y>lastY+10&&y>240)){
         bar.classList.add('is-hidden-bar');
@@ -6700,6 +6800,7 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
     if(share){
       share.innerHTML=SVG_SHARE+'<span class="visually-hidden">Bagikan</span>';
       share.addEventListener('click',function(){
+        if(shareOpener){shareOpener();return}
         var data={title:info.title,url:location.href};
         if(navigator.share){navigator.share(data).catch(function(){})}
         else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(location.href).then(function(){showNotice('Link disalin')})}
@@ -6735,6 +6836,8 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
   }
 
   /* ---------- v1.1.8 refinement: advanced styles, skeleton and live search ---------- */
+  var _mxV=0,_mxT=0;
+  function docMax(){var t=Date.now();if(t-_mxT>700){_mxV=(document.documentElement.scrollHeight||1)-window.innerHeight;_mxT=t}return _mxV}
   function initAdvancedStyleSettings(){
     var b=document.body,st=getComputedStyle(b);
     function num(name,def){var n=parseInt(st.getPropertyValue(name),10);return n||def}
@@ -6748,10 +6851,19 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
     var foot=num('--bui-footer-style',3);b.setAttribute('data-footer-style',String(Math.min(7,foot)));
     var skeletonOn=b.getAttribute('data-skeleton')==='on';
     $$('.post-card').forEach(function(card){card.classList.remove('bui-skeleton-ready')});
-    if(skeletonOn){window.setTimeout(function(){$$('.post-card').forEach(function(card){card.classList.add('bui-skeleton-ready')});b.classList.add('bui-page-skeleton-ready')},1600)}else{b.classList.add('bui-page-skeleton-ready')}
+    if(skeletonOn){
+      var skReady=function(card){card.classList.add('bui-skeleton-ready')};
+      $$('.post-card').forEach(function(card){
+        var im=card.querySelector('.post-thumb img');
+        if(!im||(im.complete&&!im.classList.contains('lazyload')&&im.naturalWidth>0)){skReady(card);return}
+        im.addEventListener('load',function(){skReady(card)},{once:true});
+        im.addEventListener('error',function(){skReady(card)},{once:true});
+      });
+      document.addEventListener('lazyloaded',function(e){var c=e.target&&e.target.closest?e.target.closest('.post-card'):null;if(c)skReady(c)});
+      window.setTimeout(function(){$$('.post-card').forEach(skReady)},2500);
+      window.setTimeout(function(){b.classList.add('bui-page-skeleton-ready')},150);
+    }else{b.classList.add('bui-page-skeleton-ready')}
     function syncThumbRatio(img){var card=img.closest('.post-card'),thumb=img.closest('.post-thumb');if(!card||!thumb||card.classList.contains('is-product'))return;function apply(){if(img.naturalWidth>0&&img.naturalHeight>0)thumb.style.aspectRatio=img.naturalWidth+' / '+img.naturalHeight}if(img.complete)apply();else{img.addEventListener('load',apply,{once:true});img.addEventListener('error',function(){thumb.style.aspectRatio='16 / 9'},{once:true})}}
-    $$('#postGrid .post-card .post-thumb img').forEach(syncThumbRatio);
-    var pg=$('#postGrid');if(pg){pg.querySelectorAll('.post-thumb img').forEach(syncThumbRatio);}
   }
   function initLiveSearch(){
     var panel=$('#buiLiveSearch'),back=$('#buiLiveSearchBackdrop'),input=$('#buiLiveSearchInput'),results=$('#buiLiveSearchResults'),status=$('#buiLiveSearchStatus'),close=$('#buiLiveSearchClose'),form=$('#buiLiveSearchForm');
@@ -6890,6 +7002,39 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
     linkedin:'<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>'
   };
   var ICON_ALIAS={beranda:'home',produk:'shop',toko:'shop',store:'shop',menu:'link',saved:'heart',bookmark:'heart',keranjang:'cart',preview:'eye',demo:'eye',live:'eye',unduh:'download',buy:'cart',beli:'cart',order:'cart',support:'chat',contact:'chat',hubungi:'chat',email:'mail',telp:'phone',call:'phone',twitter:'x',git:'code',source:'code',docs:'info',dokumentasi:'info',wa:'whatsapp',tg:'telegram',ig:'instagram',yt:'youtube',fb:'facebook',website:'globe',web:'globe',blog:'globe'};
+  ICON_PATHS.pinterest='<circle cx="12" cy="12" r="9"/><path d="M10.5 20.5 12 13m-1.6-3.6a2.6 2.6 0 1 1 3.9 2.2"/>';
+  ICON_PATHS.reddit='<circle cx="12" cy="13.5" r="7"/><circle cx="9.5" cy="13" r="1"/><circle cx="14.5" cy="13" r="1"/><path d="M9.5 16.5c1.5 1 3.5 1 5 0M12 6.5l1-3 3 .8"/>';
+  ICON_PATHS.tumblr='<path d="M10 3v5H7m3 0v7a3 3 0 0 0 3 3h2"/>';
+  ICON_PATHS.ai='<path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2 2.2.8-2.2.8L19 21l-.8-2.2-2.2-.8 2.2-.8z"/>';
+  ICON_PATHS.print='<path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7"/>';
+  ICON_PATHS.share='<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>';
+  var shareOpener=null;
+  function buildShareItems(url,title){
+    var u=encodeURIComponent(url),t=encodeURIComponent(title),both=encodeURIComponent(title+' '+url);
+    var og=document.querySelector('meta[property="og:image"]'),img=og?encodeURIComponent(og.getAttribute('content')||''):'';
+    var ask=encodeURIComponent('Ringkas dan jelaskan artikel ini: '+url);
+    var items=[
+      {name:'WhatsApp',href:'https://wa.me/?text='+both,icon:'whatsapp'},
+      {name:'Facebook',href:'https://www.facebook.com/sharer/sharer.php?u='+u,icon:'facebook'},
+      {name:'X / Twitter',href:'https://twitter.com/intent/tweet?url='+u+'&text='+t,icon:'x'},
+      {name:'Threads',href:'https://www.threads.net/intent/post?text='+both,icon:'threads'},
+      {name:'Telegram',href:'https://t.me/share/url?url='+u+'&text='+t,icon:'telegram'},
+      {name:'Bluesky',href:'https://bsky.app/intent/compose?text='+both,icon:'bluesky'},
+      {name:'LinkedIn',href:'https://www.linkedin.com/sharing/share-offsite/?url='+u,icon:'linkedin'},
+      {name:'Pinterest',href:'https://pinterest.com/pin/create/button/?url='+u+'&description='+t+(img?'&media='+img:''),icon:'pinterest'},
+      {name:'Reddit',href:'https://www.reddit.com/submit?url='+u+'&title='+t,icon:'reddit'},
+      {name:'Tumblr',href:'https://www.tumblr.com/widgets/share/tool?canonicalUrl='+u+'&title='+t,icon:'tumblr'},
+      {name:'LINE',href:'https://social-plugins.line.me/lineit/share?url='+u,icon:'chat'},
+      {name:'Email',href:'mailto:?subject='+t+'&body='+both,icon:'mail',self:true},
+      {name:'SMS',href:'sms:?&body='+both,icon:'phone',self:true},
+      {name:'ChatGPT',href:'https://chatgpt.com/?q='+ask,icon:'ai'},
+      {name:'Claude',href:'https://claude.ai/new?q='+ask,icon:'ai'},
+      {name:'Perplexity',href:'https://www.perplexity.ai/search?q='+ask,icon:'ai'},
+      {name:'Print',act:'print',icon:'print'}
+    ];
+    if(navigator.share)items.push({name:'Lainnya',act:'native',icon:'share'});
+    return items;
+  }
   function iconSVG(name){
     var k=String(name||'').trim().toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
     var p=ICON_PATHS[k]||ICON_PATHS[ICON_ALIAS[k]]||ICON_PATHS[k.split('-')[0]]||ICON_PATHS[ICON_ALIAS[k.split('-')[0]]]||ICON_PATHS.link;
@@ -6944,6 +7089,7 @@ body#layout .visibility .editlink.icon:hover{background-color:#d8ff3e!important}
     initLiveSearch();
     initDropdowns();
     initSidebarDropdowns();
+    initBodyImages();
     initFooter();
     initPopular();
     initMobileMenu();
